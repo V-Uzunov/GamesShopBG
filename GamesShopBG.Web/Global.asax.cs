@@ -14,6 +14,7 @@
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<GamesShopBGDbContext, Configuration>());
             AutoMapperConfig.Execute();
+            UnityConfig.RegisterComponents();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

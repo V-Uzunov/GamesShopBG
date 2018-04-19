@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace GamesShopBG.Web.Areas.Blog
+namespace GamesShopBG.Web.Areas.Moderator
 {
-    public class BlogAreaRegistration : AreaRegistration 
+    public class ModeratorAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "Blog";
+                return "Moderator";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Blog_default",
-                "Blog/{controller}/{action}/{id}",
+                "Moderator_default",
+                "Moderator/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

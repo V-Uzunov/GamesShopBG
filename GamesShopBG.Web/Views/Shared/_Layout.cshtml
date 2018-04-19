@@ -22,6 +22,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (User.IsInRole(GlobalConstants.AdminRole))
+                    {
+                        <li>@Html.ActionLink("Admin", "Index", "Users", null, new { area = "Admin" })</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
