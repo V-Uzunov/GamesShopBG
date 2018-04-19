@@ -3,9 +3,9 @@
     public class GlobalConstants
     {
         public const string AdminRole = "Administrator";
-        public const string BlogAuthor = "Blog Author";
+        public const string ModeratorRole = "Moderator";
 
         public const string AdminArea = "Admin";
-        public const string BlogArea = "Blog";
+        public const string ModeratorArea = "Moderator";
     }
 }

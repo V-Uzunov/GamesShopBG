@@ -28,7 +28,7 @@ namespace GamesShopBG.Data.Migrations
         private void SeedRoles(GamesShopBGDbContext context)
         {
             context.Roles.AddOrUpdate(x => x.Name, new IdentityRole(GlobalConstants.AdminRole));
-            context.Roles.AddOrUpdate(x => x.Name, new IdentityRole(GlobalConstants.BlogAuthor));
+            context.Roles.AddOrUpdate(x => x.Name, new IdentityRole(GlobalConstants.ModeratorRole));
             context.SaveChanges();
         }
 

@@ -68,8 +68,15 @@
     <Compile Include="Migrations\201804190831177_DataModelsAdded.Designer.cs">
       <DependentUpon>201804190831177_DataModelsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804190844400_EditRoles.cs" />
+    <Compile Include="Migrations\201804190844400_EditRoles.Designer.cs">
+      <DependentUpon>201804190844400_EditRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804191456067_init2.cs" />
+    <Compile Include="Migrations\201804191456067_init2.Designer.cs">
+      <DependentUpon>201804191456067_init2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
@@ -95,6 +102,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804190831177_DataModelsAdded.resx">
       <DependentUpon>201804190831177_DataModelsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804190844400_EditRoles.resx">
+      <DependentUpon>201804190844400_EditRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804191456067_init2.resx">
+      <DependentUpon>201804191456067_init2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

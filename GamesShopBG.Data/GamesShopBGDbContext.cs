@@ -11,8 +11,7 @@ namespace GamesShopBG.Data
         {
 
         }
-
-        public DbSet<Article> Articles { get; set; }
+        
         public DbSet<Game> Games { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }

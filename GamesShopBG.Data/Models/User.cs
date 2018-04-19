@@ -18,7 +18,6 @@
         public DateTime Birthdate { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-        public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
