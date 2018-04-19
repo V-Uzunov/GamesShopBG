@@ -3,6 +3,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
@@ -10,9 +11,14 @@
     public class User : IdentityUser
     {
         [Required]
+        [MinLength(DataConstants.UserMinLenght)]
+        [MaxLength(DataConstants.UserMaxLenght)]
         public string Name { get; set; }
 
         public DateTime Birthdate { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+        public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
