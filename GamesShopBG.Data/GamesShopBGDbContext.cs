@@ -12,10 +12,10 @@ namespace GamesShopBG.Data
 
         }
         
-        public DbSet<Game> Games { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public virtual DbSet<Game> Games { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         
         public static GamesShopBGDbContext Create()
         {
