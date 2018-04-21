@@ -20,8 +20,5 @@
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTime Birthdate { get; set; }
     }
 }

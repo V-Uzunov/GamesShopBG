@@ -24,7 +24,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (User.IsInRole(GlobalConstants.AdminRole))
                     {
-                        <li>@Html.ActionLink("Admin", "Index", "Users", null, new { area = "Admin" })</li>
+                        <li>@Html.ActionLink("Admin", "Index", new { controller = "Users", area = "Admin" })</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

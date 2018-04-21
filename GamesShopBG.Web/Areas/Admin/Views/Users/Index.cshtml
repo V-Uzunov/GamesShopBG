@@ -1,4 +1,4 @@
-﻿@model UsersListingViewModel
+﻿@model IEnumerable<AdminUserListingServiceModel>
 @{
     ViewBag.Title = "User Administration";
 }
@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model.Users)
+        @foreach (var user in Model)
         {
             <tr>
                 <th>
@@ -30,26 +30,15 @@
                     @user.Email
                 </th>
                 <th>
-                    <form asp-action="AddToRole" method="post">
-                        <div class="row">
-                            <div class="col-md-9">
-                                <input type="hidden" name="UserId" value="@user.Id" />
-                                <select name="Role" asp-items="Model.Roles" class="form-control"></select>
-                            </div>
-                            <div class="col-md-3">
-                                <input class="btn btn-sm btn-edited" type="submit" value="Add To Role" />
-                            </div>
-                        </div>
-                    </form>
+                   
                     @if (User.IsInRole(GlobalConstants.AdminRole) && user.Username != User.Identity.Name)
                     {
-                        using (Html.BeginForm("DeleteUser", "Users", new { area = "Admin" },  FormMethod.Get, new { userId = user.Id}))
+                        using (Html.BeginForm("DeleteUser", "Users", new { area = "Admin" , userId = user.Id}))
                         {
+                            @Html.AntiForgeryToken()
                             <div class="row">
                                 <div class="col-md-9">
-                                    <button class="btn btn-sm btn-edited" type="submit">
-                                        <span style="color:red">Delete User</span>
-                                    </button>
+                                    <input class="btn btn-danger" type="submit" value="Delete"/>
                                 </div>
                             </div>
                         }

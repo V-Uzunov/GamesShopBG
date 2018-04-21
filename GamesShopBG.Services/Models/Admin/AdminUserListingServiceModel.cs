@@ -1,9 +1,6 @@
 ﻿namespace GamesShopBG.Services.Models.Admin
 {
-    using GamesShopBG.Common.Mapping;
-    using GamesShopBG.Data.Models;
-
-    public class AdminUserListingServiceModel : IMapFrom<User>
+    public class AdminUserListingServiceModel
     {
         public string Id { get; set; }
 

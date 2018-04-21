@@ -13,9 +13,7 @@
         protected void Application_Start()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<GamesShopBGDbContext, Configuration>());
-            AutoMapperConfig.Execute();
-            UnityConfig.RegisterComponents();
-
+            AutoMapperConfig.ConfigureAutomapper();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
