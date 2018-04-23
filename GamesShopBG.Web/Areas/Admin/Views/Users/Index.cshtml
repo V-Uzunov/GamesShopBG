@@ -1,4 +1,4 @@
-﻿@model UsersListingViewModel
+﻿@model IEnumerable<AdminUserListingServiceModel>
 @{
     ViewBag.Title = "User Administration";
 }
@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model.Users)
+        @foreach (var user in Model)
         {
             <tr>
                 <th>
@@ -30,6 +30,7 @@
                     @user.Email
                 </th>
                 <th>
+<<<<<<< HEAD
                     @using (Html.BeginForm("AddToRole", "Users", new { area = "Admin" }, FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
@@ -47,10 +48,22 @@
                     @if (User.IsInRole(GlobalConstants.AdminRole) && user.Username != User.Identity.Name)
                     {
                         using (Html.BeginForm("DeleteUser", "Users", new { area = "Admin", userId = user.Id }))
+=======
+                   
+                    @if (User.IsInRole(GlobalConstants.AdminRole) && user.Username != User.Identity.Name)
+                    {
+                        using (Html.BeginForm("DeleteUser", "Users", new { area = "Admin" , userId = user.Id}))
+>>>>>>> 7ddd3470b491433b80f2f7c7338892e6de3fa740
                         {
+                            @Html.AntiForgeryToken()
                             <div class="row">
+<<<<<<< HEAD
                                 <div class="col-md-3">
                                     <input class="btn btn-sm btn-danger" type="submit" value="Delete" />
+=======
+                                <div class="col-md-9">
+                                    <input class="btn btn-danger" type="submit" value="Delete"/>
+>>>>>>> 7ddd3470b491433b80f2f7c7338892e6de3fa740
                                 </div>
                             </div>
                         }

@@ -1,13 +1,14 @@
 ﻿namespace GamesShopBG.Web.Areas.Admin.Controllers
 {
     using GamesShopBG.Data;
+<<<<<<< HEAD
     using GamesShopBG.Data.Models;
+=======
+>>>>>>> 7ddd3470b491433b80f2f7c7338892e6de3fa740
     using GamesShopBG.Services.Interfaces.Admin;
     using GamesShopBG.Web.Areas.Admin.Models;
     using GamesShopBG.Web.Infrastructure.Extensions;
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Linq;
     using System.Web.Mvc;
 
     public class UsersController : BaseAdminController
@@ -25,6 +26,7 @@
         public ActionResult Index()
         {
             var users = this.users.All();
+<<<<<<< HEAD
             var roles = this.users
                 .GetAllRoles()
                 .Select(r => new SelectListItem
@@ -64,6 +66,10 @@
 
             TempData.AddSuccessMessage($"User {user.UserName} successfully added to the {model.Role} role.");
             return RedirectToAction(nameof(Index));
+=======
+
+            return this.View(users);
+>>>>>>> 7ddd3470b491433b80f2f7c7338892e6de3fa740
         }
         //GET: /Admin/Users/DeleteUser/{id}
         [Route("/{userId}")]

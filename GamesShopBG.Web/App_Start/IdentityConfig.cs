@@ -38,8 +38,13 @@
             : base(store)
         {
         }
+<<<<<<< HEAD
 
         public static UserManager Create(IdentityFactoryOptions<UserManager> options, IOwinContext context)
+=======
+        
+        public static UserManager Create(IdentityFactoryOptions<UserManager> options, IOwinContext context) 
+>>>>>>> 7ddd3470b491433b80f2f7c7338892e6de3fa740
         {
             var manager = new UserManager(new UserStore<User>(context.Get<GamesShopBGDbContext>()));
             // Configure validation logic for usernames
