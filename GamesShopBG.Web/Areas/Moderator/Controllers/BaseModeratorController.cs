@@ -5,7 +5,7 @@ namespace GamesShopBG.Web.Areas.Moderator.Controllers
 {
     [RouteArea(GlobalConstants.ModeratorArea)]
     [Authorize(Roles = GlobalConstants.ModeratorRole)]
-    public class BaseModeratorController : Controller
+    public abstract class BaseModeratorController : Controller
     {
     }
 }

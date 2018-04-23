@@ -32,12 +32,14 @@
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class UserManager : UserManager<User>
     {
+        private UserStore<User> userStore;
+
         public UserManager(IUserStore<User> store)
             : base(store)
         {
         }
 
-        public static UserManager Create(IdentityFactoryOptions<UserManager> options, IOwinContext context) 
+        public static UserManager Create(IdentityFactoryOptions<UserManager> options, IOwinContext context)
         {
             var manager = new UserManager(new UserStore<User>(context.Get<GamesShopBGDbContext>()));
             // Configure validation logic for usernames
@@ -78,7 +80,7 @@
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;

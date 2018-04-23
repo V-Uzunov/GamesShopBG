@@ -15,6 +15,8 @@
         [MaxLength(DataConstants.UserMaxLenght)]
         public string Name { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
