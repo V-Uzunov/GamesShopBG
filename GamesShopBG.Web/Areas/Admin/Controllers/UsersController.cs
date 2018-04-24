@@ -1,12 +1,10 @@
 ﻿namespace GamesShopBG.Web.Areas.Admin.Controllers
 {
     using GamesShopBG.Data;
-    using GamesShopBG.Data.Models;
     using GamesShopBG.Services.Interfaces.Admin;
     using GamesShopBG.Web.Areas.Admin.Models;
     using GamesShopBG.Web.Infrastructure.Extensions;
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -30,7 +28,7 @@
                 .Select(r => new SelectListItem
                 {
                     Text = r.Name,
-                    Value = r.Name
+                    Value = r.Id
                 })
                 .ToList();
 
@@ -46,10 +44,10 @@
         public ActionResult AddToRole(AddUserToRoleFormModel model)
         {
             var user = this.userManager.FindById(model.UserId);
-            var roles = this.users.GetRoles(model.Role);
+            var role = this.users.GetRoles(model.Role);
 
             var userExists = user != null;
-            var roleExists = roles != null;
+            var roleExists = role != null;
             if (!roleExists || !userExists)
             {
                 ModelState.AddModelError(string.Empty, "Invalid identity details.");
@@ -60,9 +58,9 @@
                 return RedirectToAction(nameof(Index));
             }
 
-            this.userManager.AddToRole(user.Id, model.Role);
+            this.userManager.AddToRole(user.Id, role.Name);
 
-            TempData.AddSuccessMessage($"User {user.UserName} successfully added to the {model.Role} role.");
+            TempData.AddSuccessMessage($"User {user.UserName} successfully added to the {role.Name} role.");
             return RedirectToAction(nameof(Index));
         }
         //GET: /Admin/Users/DeleteUser/{id}

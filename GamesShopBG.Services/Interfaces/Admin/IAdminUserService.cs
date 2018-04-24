@@ -3,7 +3,6 @@
     using GamesShopBG.Services.Models.Admin;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Collections.Generic;
-    using System.Data.Entity;
 
     public interface IAdminUserService
     {
