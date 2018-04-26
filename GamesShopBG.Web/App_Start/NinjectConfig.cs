@@ -8,6 +8,8 @@ namespace GamesShopBG.Web.App_Start
     using GamesShopBG.Data;
     using GamesShopBG.Services.Implementations.Admin;
     using GamesShopBG.Services.Interfaces.Admin;
+    using GamesShopBG.Services.Interfaces.Moderator;
+    using GamesShopBG.Services.Implementations.Moderator;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
@@ -71,7 +73,10 @@ namespace GamesShopBG.Web.App_Start
                .To<AdminUserService>()
                .InRequestScope();
 
-            
+            kernel
+               .Bind<IModeratorGamesService>()
+               .To<ModeratorGamesService>()
+               .InRequestScope();
         }
     }
 }

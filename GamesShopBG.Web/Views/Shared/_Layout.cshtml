@@ -26,6 +26,10 @@
                     {
                         <li>@Html.ActionLink("Admin", "Index", new { controller = "Users", area = "Admin" })</li>
                     }
+                    @if (User.IsInRole(GlobalConstants.ModeratorRole))
+                    {
+                        <li>@Html.ActionLink("Add Games", "Create", new { controller = "Games", area = "Moderator" })</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

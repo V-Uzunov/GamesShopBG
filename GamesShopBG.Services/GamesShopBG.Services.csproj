@@ -112,8 +112,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\Admin\AdminUserService.cs" />
+    <Compile Include="Implementations\Moderator\ModeratorGamesService.cs" />
     <Compile Include="Interfaces\Admin\IAdminUserService.cs" />
+    <Compile Include="Interfaces\Moderator\IModeratorGamesService.cs" />
     <Compile Include="Models\Admin\AdminUserListingServiceModel.cs" />
+    <Compile Include="Models\Moderator\CreateEditFormServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
   </ItemGroup>

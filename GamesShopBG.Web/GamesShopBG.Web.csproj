@@ -215,7 +215,7 @@
     <Compile Include="Areas\Admin\Models\UserDeleteForm.cs" />
     <Compile Include="Areas\Admin\Models\UsersListingViewModel.cs" />
     <Compile Include="Areas\Moderator\Controllers\BaseModeratorController.cs" />
-    <Compile Include="Areas\Moderator\Controllers\ModeratorController.cs" />
+    <Compile Include="Areas\Moderator\Controllers\GamesController.cs" />
     <Compile Include="Areas\Moderator\ModeratorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -263,6 +263,8 @@
     <Content Include="Areas\Moderator\Views\web.config" />
     <Content Include="Areas\Moderator\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Users\DeleteUser.cshtml" />
+    <Content Include="Areas\Moderator\Views\Games\Create.cshtml" />
+    <Content Include="Areas\Moderator\Views\Shared\_CreateEditPartialView.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -320,7 +322,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Moderator\Models\" />
-    <Folder Include="Areas\Moderator\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

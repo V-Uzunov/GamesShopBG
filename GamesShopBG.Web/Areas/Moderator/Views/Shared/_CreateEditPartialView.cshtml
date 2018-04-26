@@ -1,0 +1,44 @@
+﻿@model CreateEditFormServiceModel
+<div class="col-md-4 form-default">
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(t => t.Title)
+            @Html.TextBoxFor(t => t.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(t=> t.Title, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.Price)
+            @Html.TextBoxFor(t => t.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(t => t.Price, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.Size)
+            @Html.TextBoxFor(t => t.Size, new { @class = "form-control" })
+            @Html.ValidationMessageFor(t => t.Size, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.VideoId)
+            <span class="input-group-addon form-control">https://www.youtube.com/watch?v=</span>
+            @Html.TextBoxFor(t => t.VideoId, new { @class = "form-control" })
+            @Html.ValidationMessageFor(t => t.VideoId, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.ThumbnailUrl)
+            @Html.TextBoxFor(t => t.ThumbnailUrl, new { @class = "form-control" })
+            @Html.ValidationMessageFor(t => t.ThumbnailUrl, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.Description)
+            @Html.TextAreaFor(t => t.Description, new { rows = "10", @class = "form-control" })
+            @Html.ValidationMessageFor(t => t.Description, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.ReleaseDate)
+            @Html.EditorFor(t => t.ReleaseDate, new { @class = "form-control" })
+            @Html.ValidationMessageFor(t => t.ReleaseDate, "", new { @class="text-danger"})
+        </div>
+        <button type="submit" class="btn btn-primary btn-edited">Save Game</button>
+    </form>
+</div>

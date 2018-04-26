@@ -1,16 +1,16 @@
-﻿namespace GamesShopBG.Data.Models
+﻿namespace GamesShopBG.Services.Models.Moderator
 {
+    using GamesShopBG.Data;
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Game
+    public class CreateEditFormServiceModel
     {
         public int Id { get; set; }
 
         [Required]
-        [MinLength(DataConstants.GamesTitleMinLenght)]
-        [MaxLength(DataConstants.GamesTitleMaxLenght)]
+        [MinLength(DataConstants.GamesTitleMinLenght, ErrorMessage = "Title minimum length is 3")]
+        [MaxLength(DataConstants.GamesTitleMaxLenght, ErrorMessage = "Title maximum length is 100")]
         public string Title { get; set; }
 
         [Required]
@@ -24,19 +24,21 @@
         [Required]
         [MinLength(DataConstants.GamesVideoIdMinAndMaxLenght)]
         [MaxLength(DataConstants.GamesVideoIdMinAndMaxLenght)]
+        [Display(Name = "YouTube Video Id")]
         public string VideoId { get; set; }
 
-        [MaxLength(DataConstants.GamesThumbnailMaxLenght)]
+        [Required]
+        [Display(Name = "Thumbnail URL")]
+        [MaxLength(DataConstants.GamesThumbnailMaxLenght, ErrorMessage = "Thumbnail URL max lenght is 2047")]
         public string ThumbnailUrl { get; set; }
 
         [Required]
-        [MinLength(DataConstants.GamesDescriptionMinLenght)]
+        [MinLength(DataConstants.GamesDescriptionMinLenght, ErrorMessage = "Description minimum length is 20")]
         public string Description { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
-        public virtual ICollection<Order> Order { get; set; } = new List<Order>();
     }
 }
