@@ -69,7 +69,7 @@ namespace GamesShopBG.Data.Migrations
                         Title = c.String(nullable: false, maxLength: 100),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Size = c.Double(nullable: false),
-                        VideoId = c.String(nullable: false, maxLength: 11),
+                        videoUrl = c.String(nullable: false, maxLength: 11),
                         ThumbnailUrl = c.String(maxLength: 2047),
                         Description = c.String(nullable: false),
                         ReleaseDate = c.DateTime(nullable: false),

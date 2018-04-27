@@ -265,6 +265,8 @@
     <Content Include="Areas\Admin\Views\Users\DeleteUser.cshtml" />
     <Content Include="Areas\Moderator\Views\Games\Create.cshtml" />
     <Content Include="Areas\Moderator\Views\Shared\_CreateEditPartialView.cshtml" />
+    <Content Include="Areas\Moderator\Views\Games\Edit.cshtml" />
+    <Content Include="Areas\Moderator\Views\Games\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

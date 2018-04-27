@@ -1,4 +1,4 @@
-﻿@model CreateEditFormServiceModel
+﻿@model ModeratorGameServiceModel
 <div class="col-md-4 form-default">
     <form method="post">
         @Html.AntiForgeryToken()
@@ -19,10 +19,9 @@
             @Html.ValidationMessageFor(t => t.Size, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(t => t.VideoId)
-            <span class="input-group-addon form-control">https://www.youtube.com/watch?v=</span>
-            @Html.TextBoxFor(t => t.VideoId, new { @class = "form-control" })
-            @Html.ValidationMessageFor(t => t.VideoId, "", new { @class = "text-danger" })
+            @Html.LabelFor(t => t.videoUrl)
+            @Html.TextBoxFor(t => t.videoUrl, new { @class = "form-control" })
+            @Html.ValidationMessageFor(t => t.videoUrl, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             @Html.LabelFor(t => t.ThumbnailUrl)
@@ -41,4 +40,8 @@
         </div>
         <button type="submit" class="btn btn-primary btn-edited">Save Game</button>
     </form>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>

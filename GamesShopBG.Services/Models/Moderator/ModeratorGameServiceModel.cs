@@ -4,7 +4,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateEditFormServiceModel
+    public class ModeratorGameServiceModel
     {
         public int Id { get; set; }
 
@@ -22,10 +22,10 @@
         public double Size { get; set; }
 
         [Required]
-        [MinLength(DataConstants.GamesVideoIdMinAndMaxLenght)]
-        [MaxLength(DataConstants.GamesVideoIdMinAndMaxLenght)]
+        [MinLength(DataConstants.GamesvideoUrlMinAndMaxLenght)]
+        [MaxLength(DataConstants.GamesvideoUrlMinAndMaxLenght)]
         [Display(Name = "YouTube Video Id")]
-        public string VideoId { get; set; }
+        public string videoUrl { get; set; }
 
         [Required]
         [Display(Name = "Thumbnail URL")]

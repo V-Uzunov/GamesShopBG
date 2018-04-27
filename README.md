@@ -11,7 +11,7 @@ The application is implemented using ASP.NET Framework. Using Visual Studio 2017
 •	Using sections and partial views, editor and display templates<br />
 •	Database back-end – Microsoft SQL Server<br />
 •	Database access – Entity Framework <br />
-•	MVC Areas – area for administration and blog author<br />
+•	MVC Areas – area for administration and moderator<br />
 •	Managing users and roles – ASP.NET Identity System<br />
 •	Write unit tests for your logic, controllers, actions, helpers, etc.<br />
 •	Error handling and data validation<br />
