@@ -69,3 +69,34 @@ footer {
     font-size: 0.8em;
     text-align: center;
 }
+
+
+.btn {
+    border: none;
+    box-shadow: none;
+    background: none;
+    outline: none;
+    color: white;
+    padding: 5px;
+    margin: 0px;
+    font: 16px 'Open Sans', sans-serif;
+    border-bottom: 1px solid white;
+    transition: .5s ease-in;
+}
+
+.btn:focus {
+    border-color: #00bbbb;
+}
+.btn[type=submit] {
+    border: 1px solid black;
+    padding: 10px 25px;
+    background-color: darkgrey;
+    transition: all .2s ease-in-out;
+}
+
+.btn[type=submit]:hover{
+    background: #00bbbb;
+    border-color: #00bbbb;
+    transform: scale(1.1);
+    cursor: pointer;
+}
