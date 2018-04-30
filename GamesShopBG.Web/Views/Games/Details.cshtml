@@ -1,0 +1,45 @@
+﻿@model  GamesDetailsServiceModel
+
+@{
+    ViewBag.Title = $"{Model.Title} Details";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-block">
+            <div class="card-text-center">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h3 class="text-center">@ViewData["Title"]</h3>
+                    </li>
+                    <li class="list-group-item container-default">
+                        <b>Game Trailer:</b>
+                        <div class="embed-responsive embed-responsive-21by9 ">
+                            <iframe class="embed-responsive-item" src="@Model.VideoUrl" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Size:</b> @Model.Size GB
+                    </li>
+                    <li class="list-group-item">
+                        <b>Price:</b> @Model.Price $
+                    </li>
+                    <li class="list-group-item">
+                        <b>Release Date:</b> @Model.ReleaseDate.ToShortDateString()
+                    </li>
+                    <li class="list-group-item">
+                        <b>Description:</b> @Model.Description
+                    </li>
+                </ul>
+                @if (User.IsInRole(GlobalConstants.ModeratorRole))
+                {
+                    <div class="text-right">
+                        @Html.ActionLink("Edit", "Edit", "Games", new { area=$"{GlobalConstants.ModeratorArea}", id=Model.Id}, new { @class="btn btn-warning"})
+                        @Html.ActionLink("Delete", "Delete", "Games", new {area = $"{GlobalConstants.ModeratorArea}", id=Model.Id }, new { @class = "btn btn-danger" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -35,11 +35,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.videoUrl)
+            @Html.DisplayNameFor(model => model.VideoUrl)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.videoUrl)
+            @Html.DisplayFor(model => model.VideoUrl)
         </dd>
 
         <dt>
@@ -68,12 +68,11 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("Destroy", "Games", new { area = "Moderator", id = Model.Id }, FormMethod.Post)) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" />
         </div>
     }
 </div>

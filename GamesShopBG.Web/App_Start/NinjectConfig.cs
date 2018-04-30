@@ -16,6 +16,8 @@ namespace GamesShopBG.Web.App_Start
     using Ninject.Web.Common.WebHost;
     using System;
     using System.Web;
+    using GamesShopBG.Services.Interfaces.Games;
+    using GamesShopBG.Services.Implementations.Games;
 
     public class NinjectConfig
     {
@@ -71,12 +73,17 @@ namespace GamesShopBG.Web.App_Start
             kernel
                .Bind<IAdminUserService>()
                .To<AdminUserService>()
-               .InRequestScope();
+               .InTransientScope();
 
             kernel
                .Bind<IModeratorGamesService>()
                .To<ModeratorGamesService>()
-               .InRequestScope();
+               .InTransientScope();
+
+            kernel
+                .Bind<IGameService>()
+                .To<GameService>()
+                .InTransientScope();
         }
     }
 }

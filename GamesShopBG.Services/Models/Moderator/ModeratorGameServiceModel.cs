@@ -22,10 +22,9 @@
         public double Size { get; set; }
 
         [Required]
-        [MinLength(DataConstants.GamesvideoUrlMinAndMaxLenght)]
-        [MaxLength(DataConstants.GamesvideoUrlMinAndMaxLenght)]
-        [Display(Name = "YouTube Video Id")]
-        public string videoUrl { get; set; }
+        [MaxLength(DataConstants.GamesvideoUrlMinAndMaxLenght, ErrorMessage = "Video Url maximum length is 2047")]
+        [Display(Name = "YouTube Video URL")]
+        public string VideoUrl { get; set; }
 
         [Required]
         [Display(Name = "Thumbnail URL")]

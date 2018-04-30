@@ -33,7 +33,7 @@
             await this.games.CreateAsync(model.Title,
                                          model.Price,
                                          model.Size,
-                                         model.videoUrl,
+                                         model.VideoUrl,
                                          model.ThumbnailUrl,
                                          model.Description,
                                          model.ReleaseDate);
@@ -65,7 +65,7 @@
                 Description = game.Description,
                 ThumbnailUrl = game.ThumbnailUrl,
                 ReleaseDate = game.ReleaseDate,
-                videoUrl = game.videoUrl
+                VideoUrl = game.VideoUrl
             });
         }
 
@@ -85,7 +85,7 @@
                                             model.Title,
                                             model.Price,
                                             model.Size,
-                                            model.videoUrl,
+                                            model.VideoUrl,
                                             model.ThumbnailUrl,
                                             model.Description,
                                             model.ReleaseDate);
@@ -117,7 +117,7 @@
                 Description = game.Description,
                 ThumbnailUrl = game.ThumbnailUrl,
                 ReleaseDate = game.ReleaseDate,
-                videoUrl = game.videoUrl
+                VideoUrl = game.VideoUrl
             });
         }
 

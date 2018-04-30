@@ -1,10 +1,26 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model  HomeIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+@Html.Partial("_CarouselView")
+
+<div class="row">
+    @using (Html.BeginForm("Search", "Home"))
+    {
+        <div class="col-md-1 pull-right">
+            <button type="submit" class="btn pull-right"><span class="glyphicon glyphicon-search"></span> Search</button>
+        </div>
+        <div class="col-md-4 pull-right">
+            <input required type="search" name="SearchText" class="form-control" placeholder="Search..." />
+        </div>
+    }
 </div>
+<br />
+
+<div class="row">
+    @Html.Partial("_GamesListingPartial", Model.Games)
+</div>
+
 
