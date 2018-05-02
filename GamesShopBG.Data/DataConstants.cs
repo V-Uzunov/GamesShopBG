@@ -7,9 +7,10 @@
 
         public const int GamesTitleMinLenght = 3;
         public const int GamesTitleMaxLenght = 100;
-        public const int GamesvideoUrlMinAndMaxLenght = 2048;
+        public const int GamesUrlMinAndMaxLenght = 2047;
         public const int GamesThumbnailMaxLenght = 2047;
         public const int GamesDescriptionMinLenght = 20;
+        public const int GamesVideoIdMinAndMaxLenght = 11;
 
         public const int OrderFirstNameMaxLenght = 50;
         public const int OrderLastNameMaxLenght = 50;

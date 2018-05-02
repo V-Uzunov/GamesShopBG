@@ -1,12 +1,12 @@
 ﻿namespace GamesShopBG.Services.Implementations.Games
 {
+    using AutoMapper.QueryableExtensions;
+    using GamesShopBG.Services.Interfaces.Games;
+    using GamesShopBG.Services.Models.Games;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using AutoMapper.QueryableExtensions;
-    using GamesShopBG.Services.Interfaces.Games;
-    using GamesShopBG.Services.Models.Games;
 
     public class GameService : Service, IGameService
     {

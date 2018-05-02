@@ -22,7 +22,8 @@
         public double Size { get; set; }
 
         [Required]
-        [MaxLength(DataConstants.GamesvideoUrlMinAndMaxLenght)]
+        [MinLength(DataConstants.GamesVideoIdMinAndMaxLenght)]
+        [MaxLength(DataConstants.GamesVideoIdMinAndMaxLenght)]
         public string VideoUrl { get; set; }
 
         [MaxLength(DataConstants.GamesThumbnailMaxLenght)]

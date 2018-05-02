@@ -20,7 +20,8 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(t => t.VideoUrl)
-            @Html.TextBoxFor(t => t.VideoUrl, new { @class = "form-control" })
+            <span class="input-group-addon form-control">https://www.youtube.com/watch?v=</span>
+            @Html.TextBoxFor(t => t.VideoUrl, new { @class = "form-control", minlength = "11", maxlength = "11" })
             @Html.ValidationMessageFor(t => t.VideoUrl, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">

@@ -23,6 +23,7 @@
             {
                 Title = title,
                 Price = price,
+                Size = size,
                 VideoUrl = videoUrl,
                 ThumbnailUrl = thumbnailUrl,
                 Description = description,

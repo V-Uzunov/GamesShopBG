@@ -22,8 +22,9 @@
         public double Size { get; set; }
 
         [Required]
-        [MaxLength(DataConstants.GamesvideoUrlMinAndMaxLenght, ErrorMessage = "Video Url maximum length is 2047")]
-        [Display(Name = "YouTube Video URL")]
+        [MinLength(DataConstants.GamesVideoIdMinAndMaxLenght, ErrorMessage = "Video Url minimum length is 11")]
+        [MaxLength(DataConstants.GamesVideoIdMinAndMaxLenght, ErrorMessage = "Video Url maximum length is 11")]
+        [Display(Name = "YouTube Video ID")]
         public string VideoUrl { get; set; }
 
         [Required]
