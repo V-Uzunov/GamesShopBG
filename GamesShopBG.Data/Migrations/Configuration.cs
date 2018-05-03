@@ -20,9 +20,9 @@ namespace GamesShopBG.Data.Migrations
 
         protected override void Seed(GamesShopBGDbContext context)
         {
-            //this.userManager = new UserManager<User>(new UserStore<User>(context));
-            //this.SeedRoles(context);
-            //this.SeedUsers(context);
+            this.userManager = new UserManager<User>(new UserStore<User>(context));
+            this.SeedRoles(context);
+            this.SeedUsers(context);
         }
 
         private void SeedRoles(GamesShopBGDbContext context)

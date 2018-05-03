@@ -81,37 +81,9 @@
   <ItemGroup>
     <Compile Include="DataConstants.cs" />
     <Compile Include="GamesShopBGDbContext.cs" />
-    <Compile Include="Migrations\201804181217443_init.cs" />
-    <Compile Include="Migrations\201804181217443_init.Designer.cs">
-      <DependentUpon>201804181217443_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804190831177_DataModelsAdded.cs" />
-    <Compile Include="Migrations\201804190831177_DataModelsAdded.Designer.cs">
-      <DependentUpon>201804190831177_DataModelsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804190844400_EditRoles.cs" />
-    <Compile Include="Migrations\201804190844400_EditRoles.Designer.cs">
-      <DependentUpon>201804190844400_EditRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804260919483_EditData.cs" />
-    <Compile Include="Migrations\201804260919483_EditData.Designer.cs">
-      <DependentUpon>201804260919483_EditData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804270942346_EditModels.cs" />
-    <Compile Include="Migrations\201804270942346_EditModels.Designer.cs">
-      <DependentUpon>201804270942346_EditModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805021103492_init23.cs" />
-    <Compile Include="Migrations\201805021103492_init23.Designer.cs">
-      <DependentUpon>201805021103492_init23.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805030829143_init3.cs" />
-    <Compile Include="Migrations\201805030829143_init3.Designer.cs">
-      <DependentUpon>201805030829143_init3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805031018595_InitialCreate.cs" />
-    <Compile Include="Migrations\201805031018595_InitialCreate.Designer.cs">
-      <DependentUpon>201805031018595_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201805031051066_init.cs" />
+    <Compile Include="Migrations\201805031051066_init.Designer.cs">
+      <DependentUpon>201805031051066_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
@@ -134,29 +106,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804181217443_init.resx">
-      <DependentUpon>201804181217443_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804190831177_DataModelsAdded.resx">
-      <DependentUpon>201804190831177_DataModelsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804190844400_EditRoles.resx">
-      <DependentUpon>201804190844400_EditRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804260919483_EditData.resx">
-      <DependentUpon>201804260919483_EditData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804270942346_EditModels.resx">
-      <DependentUpon>201804270942346_EditModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805021103492_init23.resx">
-      <DependentUpon>201805021103492_init23.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805030829143_init3.resx">
-      <DependentUpon>201805030829143_init3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805031018595_InitialCreate.resx">
-      <DependentUpon>201805031018595_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805031051066_init.resx">
+      <DependentUpon>201805031051066_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
