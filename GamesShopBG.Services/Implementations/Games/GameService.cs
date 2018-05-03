@@ -1,6 +1,7 @@
 ﻿namespace GamesShopBG.Services.Implementations.Games
 {
     using AutoMapper.QueryableExtensions;
+    using GamesShopBG.Data.Models;
     using GamesShopBG.Services.Interfaces.Games;
     using GamesShopBG.Services.Models.Games;
     using System.Collections.Generic;
@@ -34,5 +35,11 @@
                    .Games
                    .ProjectTo<GameListingServiceModel>()
                    .ToList();
+
+        public GamesCartServiceModel GetGame(int gameId)
+            => this.db
+                   .Games
+                   .ProjectTo<GamesCartServiceModel>()
+                   .FirstOrDefault(g => g.Id == gameId);
     }
 }

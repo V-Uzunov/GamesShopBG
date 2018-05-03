@@ -3,6 +3,7 @@ using GamesShopBG.Data.Models;
 using GamesShopBG.Services.Models.Admin;
 using GamesShopBG.Services.Models.Games;
 using GamesShopBG.Services.Models.Moderator;
+using GamesShopBG.Services.Models.ShoppingCart;
 
 namespace GamesShopBG.Web.App_Start
 {
@@ -16,6 +17,8 @@ namespace GamesShopBG.Web.App_Start
                 action.CreateMap<ModeratorGameServiceModel, Game>();
                 action.CreateMap<GameListingServiceModel, Game>();
                 action.CreateMap<GamesDetailsServiceModel, Game>();
+                action.CreateMap<GamesCartServiceModel, Game>();
+                action.CreateMap<ShoppingCartItemServiceModel, ShoppingCartItem>();
             });
         }
     }

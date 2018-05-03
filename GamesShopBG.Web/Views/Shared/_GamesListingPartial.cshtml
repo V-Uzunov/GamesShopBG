@@ -10,8 +10,8 @@
                     <img src="@games.ThumbnailUrl" class="img-responsive img-fluid img-center" />
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><b>Release Date:</b> @games.ReleaseDate.ToShortDateString()</li>
-                        <li class="list-group-item"><b>Price:</b> @games.Price $</li>
-                        <li class="list-group-item"><b>Size:</b> @games.Size GB</li>
+                        <li class="list-group-item"><b>Price:</b> @games.Price.ToString("c")</li>
+                        <li class="list-group-item"><b>Size:</b> @games.Size.ToString("f") GB</li>
                         @{
                             var subDescript = games.Description.Substring(0, DataConstants.GamesDescriptionMinLenght);
                         }
@@ -19,6 +19,8 @@
                     </ul>
                     <div class="card-footer">
                         @Html.ActionLink("Details", "Details", "Games", new { area = "", id = games.Id}, new {@class="btn" })
+
+                        @Html.ActionLink("Add to cart", "AddToShoppingCart", "ShoppingCart", new { area = "", id=games.Id}, new { @class="btn"})
                     </div>
                 </div>
             </div>

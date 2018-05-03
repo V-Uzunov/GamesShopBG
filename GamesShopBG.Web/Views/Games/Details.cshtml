@@ -19,16 +19,19 @@
                         </div>
                     </li>
                     <li class="list-group-item">
-                        <b>Size:</b> @Model.Size GB
+                        <b>Size:</b> @Model.Size.ToString("f") GB
                     </li>
                     <li class="list-group-item">
-                        <b>Price:</b> @Model.Price $
+                        <b>Price:</b> @Model.Price.ToString("c")
                     </li>
                     <li class="list-group-item">
                         <b>Release Date:</b> @Model.ReleaseDate.ToShortDateString()
                     </li>
                     <li class="list-group-item">
                         <b>Description:</b> @Model.Description
+                    </li>
+                    <li class="list-group-item">
+                        @Html.ActionLink("Add to cart", "AddToShoppingCart", "ShoppingCart", new { area = "", id = Model.Id }, new { @class = "btn" })
                     </li>
                 </ul>
                 @if (User.IsInRole(GlobalConstants.ModeratorRole))
