@@ -1,6 +1,7 @@
 ﻿namespace GamesShopBG.Web.Controllers
 {
     using GamesShopBG.Data.Models;
+    using GamesShopBG.Services.Implementations.ShoppingCart;
     using GamesShopBG.Web.ViewModels.Account;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
@@ -49,6 +50,7 @@
                 _userManager = value;
             }
         }
+        
 
         //
         // GET: /Account/Login

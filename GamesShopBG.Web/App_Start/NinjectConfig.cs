@@ -19,6 +19,7 @@ namespace GamesShopBG.Web.App_Start
     using GamesShopBG.Services.Interfaces.Games;
     using GamesShopBG.Services.Implementations.Games;
     using GamesShopBG.Services.Implementations.ShoppingCart;
+    using GamesShopBG.Services.Interfaces.ShoppingCart;
 
     public class NinjectConfig
     {
@@ -84,6 +85,11 @@ namespace GamesShopBG.Web.App_Start
             kernel
                 .Bind<IGameService>()
                 .To<GameService>()
+                .InRequestScope();
+
+            kernel
+                .Bind<IShoppingCart>()
+                .To<ShoppingCart>()
                 .InRequestScope();
             
         }

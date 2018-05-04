@@ -47,8 +47,8 @@ namespace GamesShopBG.Data.Models
         
         public decimal OrderTotal { get; set; }
         
-        public DateTime OrderPlaced { get; set; }
+        public DateTime OrderDate { get; set; }
 
-        public virtual ICollection<OrderDetail> OrderLines { get; set; } = new List<OrderDetail>();
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
     }
 }

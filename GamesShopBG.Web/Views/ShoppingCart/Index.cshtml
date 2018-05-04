@@ -1,36 +1,45 @@
 ﻿@model ShoppingCartServiceModel
 
 @{
-    ViewBag.Title = "You Shopping Cart";
+    ViewBag.Title = "Your Shopping Cart";
 }
 
 <h2>@ViewBag.Title</h2>
+<h3 id="update-message" style="color:red"></h3>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Selected amount</th>
+
             <th>Game</th>
             <th class="text-right">Price</th>
-            <th class="text-right">Subtotal</th>
+            <th class="text-right">Count</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+        @foreach (var line in Model.ShoppingCart)
         {
-            <tr>
-                <td class="text-center">@line.Amount</td>
-                <td class="text-left">@line.Game.Title</td>
+            <tr id="row-@line.Id">
+                <td class="text-left">
+                    @Html.ActionLink(line.Game.Title,"Details", "Store", new { id = line.GameId }, null)
+                            </td>
                 <td class="text-right">@line.Game.Price.ToString("c")</td>
-                <td class="text-right">
-                    @((line.Amount * line.Game.Price).ToString("c"))
+                <td class="text-right" id="item-count-@line.Id">
+                    @line.Amount
+                </td>
+                <td class="text-center">
+                    <a href="#" class="RemoveLink"
+                       data-id="@line.Id">
+                        Remove
+                        from cart
+                    </a>
                 </td>
             </tr>
         }
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" class="text-right">Total:</td>
-            <td class="text-right">
+            <td colspan="2" class="text-right">Total:</td>
+            <td class="text-right" id="cart-total">
                 @Model.ShoppingCartTotal.ToString("c")
             </td>
         </tr>
@@ -44,6 +53,34 @@
 </custom:div>
 
 <div class="text-center">
-    @Html.ActionLink("Check out now!", "Checkout", "Order", new { @class="btn btn-primary"})
+    @Html.ActionLink("Check out now!", "Checkout", "Order", new { @class = "btn btn-primary" })
 </div>
 
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            // Document.ready -> link up remove event handler
+            $(".RemoveLink").click(function () {
+                // Get the id from the link
+                var recordToDelete = $(this).attr("data-id");
+                if (recordToDelete != '') {
+                    // Perform the ajax post
+                    $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                        function (data) {
+                            // Successful requests get here
+                            // Update the page elements
+                            if (data.ItemCount == 0) {
+                                $('#row-' + data.DeleteId).fadeOut('slow');
+                            } else {
+                                $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                            }
+                            $('#cart-total').text(data.CartTotal);
+                            $('#update-message').text(data.Message);
+                            $('#cart-status').text('Cart (' + data.CartCount + ')');
+                        });
+                }
+            });
+        });
+    </script>
+}

@@ -2,16 +2,18 @@
 {
     using GamesShopBG.Services.Implementations.ShoppingCart;
     using GamesShopBG.Services.Interfaces.Games;
+    using GamesShopBG.Services.Interfaces.ShoppingCart;
     using GamesShopBG.Services.Models.ShoppingCart;
     using System.Web.Mvc;
 
     public class ShoppingCartController : Controller
     {
         private readonly IGameService games;
-        private readonly ShoppingCart shoppingCart;
+        private readonly IShoppingCart shoppingCart;
+
 
         public ShoppingCartController(IGameService games,
-                                      ShoppingCart shoppingCart)
+                                      IShoppingCart shoppingCart)
         {
             this.games = games;
             this.shoppingCart = shoppingCart;
@@ -19,38 +21,66 @@
 
         public ActionResult Index()
         {
-            var items = this.shoppingCart.GetShoppingCartItems();
-            this.shoppingCart.ShoppingCartItems = items;
+            var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            var shoppingCartViewModel = new ShoppingCartServiceModel
+            // Set up our ViewModel
+            var viewModel = new ShoppingCartServiceModel
             {
-                ShoppingCart = this.shoppingCart,
-                ShoppingCartTotal = this.shoppingCart.GetShoppingCartTotal()
+                 ShoppingCart = cart.GetCartItems(),
+                 ShoppingCartTotal = cart.GetTotal()
             };
-
-            return View(shoppingCartViewModel);
+            // Return the view
+            return View(viewModel);
         }
-
-        public ActionResult AddToShoppingCart(int id)
+        //
+        // GET: /Store/AddToCart/5
+        public ActionResult AddToCart(int id)
         {
-            var selectedGame = this.games.GetGame(id);
+            // Retrieve the game from the database
+            var addedGame = this.games.GetGame(id);
+            // Add it to the shopping cart
+            var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            if (selectedGame != null)
-            {
-                this.shoppingCart.AddToCart(selectedGame, 1);
-            }
+            cart.AddToCart(addedGame);
+
+            // Go back to the main store page for more shopping
             return RedirectToAction("Index");
         }
-
-        public ActionResult RemoveFromShoppingCart(int id)
+        //
+        // AJAX: /ShoppingCart/RemoveFromCart/5
+        [HttpPost]
+        public ActionResult RemoveFromCart(int id)
         {
-            var selectedGame = this.games.GetGame(id);
+            // Remove the item from the cart
+            var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            if (selectedGame != null)
+            // Get the name of the game to display confirmation
+            var gameName = this.shoppingCart.GetGameFromCart(id).Title;
+
+            // Remove from cart
+            int itemCount = cart.RemoveFromCart(id);
+
+            // Display the confirmation message
+            var results = new ShoppingCartRemoveServiceModel
             {
-                this.shoppingCart.RemoveFromCart(selectedGame);
-            }
-            return RedirectToAction("Index");
+                Message = Server.HtmlEncode(gameName) +
+                    " has been removed from your shopping cart.",
+                CartTotal = cart.GetTotal(),
+                CartCount = cart.GetCount(),
+                ItemCount = itemCount,
+                DeleteId = id
+            };
+            return Json(results);
+        }
+        //
+        // GET: /ShoppingCart/CartSummary
+        [ChildActionOnly]
+        public ActionResult CartSummary()
+        {
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            ViewData["CartCount"] = cart.GetCount();
+            return PartialView("CartSummary");
         }
     }
 }

@@ -40,6 +40,6 @@
             => this.db
                    .Games
                    .ProjectTo<GamesCartServiceModel>()
-                   .FirstOrDefault(g => g.Id == gameId);
+                   .FirstOrDefault(g=> g.Id == gameId);
     }
 }

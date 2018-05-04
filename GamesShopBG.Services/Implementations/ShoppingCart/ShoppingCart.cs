@@ -1,108 +1,198 @@
 ﻿namespace GamesShopBG.Services.Implementations.ShoppingCart
 {
     using AutoMapper.QueryableExtensions;
-    using GamesShopBG.Data;
     using GamesShopBG.Data.Models;
+    using GamesShopBG.Services.Interfaces.ShoppingCart;
     using GamesShopBG.Services.Models.Games;
     using GamesShopBG.Services.Models.ShoppingCart;
+    using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
 
-    public class ShoppingCart : Service
+    public class ShoppingCart : Service, IShoppingCart
     {
-        public int ShoppingCartId { get; set; }
-
-        public List<ShoppingCartItem> ShoppingCartItems { get; set; }
-
-        //public static ShoppingCart GetCart(IServiceProvider services)
-        //{
-        //    ISession session = services.GetRequiredService<IHttpContextAccessor>()?
-        //        .HttpContext.Session;
-
-        //    var context = services.GetService<AppDbContext>();
-        //    string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
-
-        //    session.SetString("CartId", cartId);
-
-        //    return new ShoppingCart(context) { ShoppingCartId = cartId };
-        //}
+        string ShoppingCartId { get; set; }
         
-        public void AddToCart(GamesCartServiceModel game, int amount)
+        public const string CartSessionKey = "CartId";
+        public static ShoppingCart GetCart(HttpContextBase context)
         {
-            var shoppingCartItem =
-                    this.db.ShoppingCartItems.SingleOrDefault(
-                        s => s.Game.Id == game.Id && s.ShoppingCartId == ShoppingCartId);
-            var dataGame = this.db.Games.FirstOrDefault(g => g.Id == game.Id);
-            if (shoppingCartItem == null)
-            {
-                shoppingCartItem = new ShoppingCartItem
-                {
-                    ShoppingCartId = ShoppingCartId,
-                    Game = dataGame,
-                    Amount = 1
-                };
+            var cart = new ShoppingCart();
+            cart.ShoppingCartId = cart.GetCartId(context);
+            return cart;
+        }
+        // Helper method to simplify shopping cart calls
+        public static ShoppingCart GetCart(Controller controller)
+        {
+            return GetCart(controller.HttpContext);
+        }
+        public void AddToCart(GamesCartServiceModel game)
+        {
+            // Get the matching cart and album instances
+            var cartItem = this.db.ShoppingCartItems.SingleOrDefault(
+                c => c.CartId == ShoppingCartId
+                && c.GameId == game.Id);
 
-                this.db.ShoppingCartItems.Add(shoppingCartItem);
+            if (cartItem == null)
+            {
+                // Create a new cart item if no cart item exists
+                cartItem = new ShoppingCartItem
+                {
+                    
+                    GameId = game.Id,
+                    CartId = ShoppingCartId,
+                    Title = game.Title,
+                    Amount = 1,
+                    DateCreated = DateTime.Now
+                };
+                this.db.ShoppingCartItems.Add(cartItem);
             }
             else
             {
-                shoppingCartItem.Amount++;
+                // If the item does exist in the cart, 
+                // then add one to the quantity
+                cartItem.Amount++;
             }
+            // Save changes
             this.db.SaveChanges();
         }
 
-        public int RemoveFromCart(GamesCartServiceModel game)
+        public GamesCartServiceModel GetGameFromCart(int id)
+            => this.db
+                   .ShoppingCartItems
+                   .ProjectTo<GamesCartServiceModel>()
+                   .FirstOrDefault(g => g.Id == id);
+
+        public int RemoveFromCart(int id)
         {
-            var shoppingCartItem =
-                    this.db.ShoppingCartItems.SingleOrDefault(
-                        s => s.Game.Id == game.Id && s.ShoppingCartId == ShoppingCartId);
+            // Get the cart
+            var cartItem = this.db.ShoppingCartItems.Single(
+                cart => cart.CartId == ShoppingCartId
+                && cart.Id == id);
 
-            var localAmount = 0;
+            int itemCount = 0;
 
-            if (shoppingCartItem != null)
+            if (cartItem != null)
             {
-                if (shoppingCartItem.Amount > 1)
+                if (cartItem.Amount > 1)
                 {
-                    shoppingCartItem.Amount--;
-                    localAmount = shoppingCartItem.Amount;
+                    cartItem.Amount--;
+                    itemCount = cartItem.Amount;
                 }
                 else
                 {
-                    this.db.ShoppingCartItems.Remove(shoppingCartItem);
+                    this.db.ShoppingCartItems.Remove(cartItem);
+                }
+                // Save changes
+                this.db.SaveChanges();
+            }
+            return itemCount;
+        }
+        public void EmptyCart()
+        {
+            var cartItems = this.db.ShoppingCartItems.Where(
+                cart => cart.CartId == ShoppingCartId);
+
+            foreach (var cartItem in cartItems)
+            {
+                this.db.ShoppingCartItems.Remove(cartItem);
+            }
+            // Save changes
+            this.db.SaveChanges();
+        }
+        public List<ShoppingCartItemServiceModel> GetCartItems()
+        {
+            return this.db.ShoppingCartItems.ProjectTo<ShoppingCartItemServiceModel>().Where(
+                cart => cart.CartId == ShoppingCartId).ToList();
+        }
+
+        public int GetCount()
+        {
+            // Get the count of each item in the cart and sum them up
+            int? count = (from cartItems in this.db.ShoppingCartItems
+                          where cartItems.CartId == ShoppingCartId
+                          select (int?)cartItems.Amount).Sum();
+            // Return 0 if all entries are null
+            return count ?? 0;
+        }
+        public decimal GetTotal()
+        {
+            // Multiply album price by count of that album to get 
+            // the current price for each of those albums in the cart
+            // sum all album price totals to get the cart total
+            decimal? total = (from cartItems in this.db.ShoppingCartItems
+                              where cartItems.CartId == ShoppingCartId
+                              select (int?)cartItems.Amount *
+                              cartItems.Game.Price).Sum();
+
+            return total ?? decimal.Zero;
+        }
+        public int CreateOrder(Order order)
+        {
+            decimal orderTotal = 0;
+
+            var cartItems = GetCartItems();
+            // Iterate over the items in the cart, 
+            // adding the order details for each
+            foreach (var item in cartItems)
+            {
+                var orderDetail = new OrderDetail
+                {
+                    GameId = item.GameId,
+                    OrderId = order.Id,
+                    Price = item.Game.Price,
+                    Amount = item.Amount
+                };
+                // Set the order total of the shopping cart
+                orderTotal += (item.Amount * item.Game.Price);
+
+                this.db.OrderDetails.Add(orderDetail);
+
+            }
+            // Set the order's total to the orderTotal count
+            order.OrderTotal = orderTotal;
+
+            // Save the order
+            this.db.SaveChanges();
+            // Empty the shopping cart
+            EmptyCart();
+            // Return the OrderId as the confirmation number
+            return order.Id;
+        }
+        // We're using HttpContextBase to allow access to cookies.
+        public string GetCartId(HttpContextBase context)
+        {
+            if (context.Session[CartSessionKey] == null)
+            {
+                if (!string.IsNullOrWhiteSpace(context.User.Identity.Name))
+                {
+                    context.Session[CartSessionKey] =
+                        context.User.Identity.Name;
+                }
+                else
+                {
+                    EmptyCart();
+                    // Generate a new random GUID using System.Guid class
+                    Guid tempCartId = Guid.NewGuid();
+                    // Send tempCartId back to client as a cookie
+                    context.Session[CartSessionKey] = tempCartId.ToString();
                 }
             }
+            return context.Session[CartSessionKey].ToString();
+        }
+        // When a user has logged in, migrate their shopping cart to
+        // be associated with their username
+        public void MigrateCart(string userName)
+        {
+            var shoppingCart = this.db.ShoppingCartItems.Where(
+                c => c.CartId == ShoppingCartId);
 
+            foreach (var item in shoppingCart)
+            {
+                item.CartId = userName;
+            }
             this.db.SaveChanges();
-
-            return localAmount;
-        }
-
-        public List<ShoppingCartItem> GetShoppingCartItems()
-        {
-            return ShoppingCartItems ??
-                   (ShoppingCartItems =
-                       this.db.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
-                           .Include(s => s.Game)
-                           .ToList());
-        }
-
-        public void ClearCart()
-        {
-            var cartItems = this.db
-                .ShoppingCartItems
-                .Where(cart => cart.ShoppingCartId == ShoppingCartId);
-
-            this.db.ShoppingCartItems.RemoveRange(cartItems);
-
-            this.db.SaveChanges();
-        }
-
-        public decimal GetShoppingCartTotal()
-        {
-            var total = this.db.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
-                .Select(c => c.Game.Price * c.Amount).Sum();
-            return total;
         }
     }
 }

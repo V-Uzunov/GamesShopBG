@@ -31,7 +31,7 @@
                         <b>Description:</b> @Model.Description
                     </li>
                     <li class="list-group-item">
-                        @Html.ActionLink("Add to cart", "AddToShoppingCart", "ShoppingCart", new { area = "", id = Model.Id }, new { @class = "btn" })
+                        @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { area = "", id = Model.Id }, new { @class = "btn" })
                     </li>
                 </ul>
                 @if (User.IsInRole(GlobalConstants.ModeratorRole))

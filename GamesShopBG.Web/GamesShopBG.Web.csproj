@@ -331,6 +331,7 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Games\Details.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Shared\" />
