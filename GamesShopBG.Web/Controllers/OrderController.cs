@@ -7,7 +7,8 @@
     using System.Linq;
     using System.Web.Mvc;
     
-    public class OrderController : BaseOrderController
+    [Authorize]
+    public class OrderController : Controller
     {
         private readonly IShoppingCartService shoppingCart;
 
