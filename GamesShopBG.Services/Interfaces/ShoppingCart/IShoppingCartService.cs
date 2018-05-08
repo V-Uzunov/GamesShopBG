@@ -1,17 +1,17 @@
 ﻿namespace GamesShopBG.Services.Interfaces.ShoppingCart
 {
-    using GamesShopBG.Data.Models;
     using GamesShopBG.Services.Models.Games;
+    using GamesShopBG.Services.Models.Order;
     using GamesShopBG.Services.Models.ShoppingCart;
     using System.Collections.Generic;
     using System.Web;
 
-    public interface IShoppingCart
+    public interface IShoppingCartService
     {
         void AddToCart(GamesCartServiceModel game);
 
         GamesCartServiceModel GetGameFromCart(int id);
-        int CreateOrder(Order order);
+        void CreateOrder(OrderServiceModelForShoppingCart order);
         string GetCartId(HttpContextBase context);
         void MigrateCart(string userName);
         int RemoveFromCart(int id);

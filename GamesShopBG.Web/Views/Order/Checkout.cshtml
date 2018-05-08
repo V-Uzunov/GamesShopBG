@@ -1,0 +1,79 @@
+﻿@model OrderServiceModelForShoppingCart
+
+@{
+    ViewBag.Title = "Order Information";
+}
+
+@using (Html.BeginForm("Checkout", "Order", FormMethod.Post, new { @class = "form-horizontal"}))
+{
+    @Html.AntiForgeryToken();
+    <h2>@ViewBag.Title</h2>
+    <h4>You're just one step away to get your games.</h4>
+    <div class="form-group">
+        @Html.LabelFor(i => i.FirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(i => i.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(i => i.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(i => i.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(i => i.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.AddressLine, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(i => i.AddressLine, new { @class = "form-control" })
+            @Html.ValidationMessageFor(i => i.AddressLine, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.ZipCode, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(i => i.ZipCode, new { @class = "form-control" })
+            @Html.ValidationMessageFor(i => i.ZipCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.City, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(i => i.City, new { @class = "form-control" })
+            @Html.ValidationMessageFor(i => i.City, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(i => i.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(i => i.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(i => i.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(i => i.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn" value="Complete order" />
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

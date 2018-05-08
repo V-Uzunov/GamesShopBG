@@ -20,8 +20,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, "")</li>
+                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart", new { area = ""});}</li>
                     @if (User.IsInRole(GlobalConstants.AdminRole))
                     {
                         <li>@Html.ActionLink("Admin", "Index", new { controller = "Users", area = "Admin" })</li>

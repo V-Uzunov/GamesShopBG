@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace GamesShopBG.Data.Models
+﻿namespace GamesShopBG.Services.Models.Order
 {
-    public class Order
+    using GamesShopBG.Data;
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    public class OrderServiceModelForShoppingCart
     {
         public int Id { get; set; }
-
+        
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First name")]
         [StringLength(DataConstants.OrderFirstNameMaxLenght)]
@@ -22,7 +22,7 @@ namespace GamesShopBG.Data.Models
         [StringLength(DataConstants.OrderAdressLineMaxLenght)]
         [Display(Name = "Address Line")]
         public string AddressLine { get; set; }
-        
+
         [Required(ErrorMessage = "Please enter your zip code")]
         [Display(Name = "Zip code")]
         [StringLength(DataConstants.OrderZipCodeMaxLenght, MinimumLength = DataConstants.OrderZipCodeMinLenght)]
@@ -44,11 +44,9 @@ namespace GamesShopBG.Data.Models
         [RegularExpression(DataConstants.OrderEmailRegEx,
             ErrorMessage = "The email address is not entered in a correct format")]
         public string Email { get; set; }
-        
-        public decimal OrderTotal { get; set; }
-        
-        public DateTime OrderDate { get; set; }
 
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public decimal OrderTotal { get; set; }
+
+        public DateTime OrderDate { get; set; }
     }
 }

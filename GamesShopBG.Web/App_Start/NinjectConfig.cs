@@ -88,8 +88,8 @@ namespace GamesShopBG.Web.App_Start
                 .InRequestScope();
 
             kernel
-                .Bind<IShoppingCart>()
-                .To<ShoppingCart>()
+                .Bind<IShoppingCartService>()
+                .To<ShoppingCartService>()
                 .InRequestScope();
             
         }

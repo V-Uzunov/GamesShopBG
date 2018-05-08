@@ -4,6 +4,7 @@
     using GamesShopBG.Data.Models;
     using GamesShopBG.Services.Interfaces.ShoppingCart;
     using GamesShopBG.Services.Models.Games;
+    using GamesShopBG.Services.Models.Order;
     using GamesShopBG.Services.Models.ShoppingCart;
     using System;
     using System.Collections.Generic;
@@ -11,20 +12,20 @@
     using System.Web;
     using System.Web.Mvc;
 
-    public class ShoppingCart : Service, IShoppingCart
+    public class ShoppingCartService : Service, IShoppingCartService
     {
         public const string CartSessionKey = "CartId";
 
         string ShoppingCartId { get; set; }
-        
-        public static ShoppingCart GetCart(HttpContextBase context)
+
+        public static ShoppingCartService GetCart(HttpContextBase context)
         {
-            var cart = new ShoppingCart();
+            var cart = new ShoppingCartService();
             cart.ShoppingCartId = cart.GetCartId(context);
             return cart;
         }
         // Helper method to simplify shopping cart calls
-        public static ShoppingCart GetCart(Controller controller)
+        public static ShoppingCartService GetCart(Controller controller)
         {
             return GetCart(controller.HttpContext);
         }
@@ -40,7 +41,7 @@
                 // Create a new cart item if no cart item exists
                 cartItem = new ShoppingCartItem
                 {
-                    
+
                     GameId = game.Id,
                     CartId = ShoppingCartId,
                     Title = game.Title,
@@ -129,38 +130,51 @@
 
             return total ?? decimal.Zero;
         }
-        public int CreateOrder(Order order)
+        public void CreateOrder(OrderServiceModelForShoppingCart order)
         {
             decimal orderTotal = 0;
 
             var cartItems = GetCartItems();
-            // Iterate over the items in the cart, 
-            // adding the order details for each
+            var orderData = new Order
+            {
+                Id = order.Id,
+                City = order.City,
+                AddressLine = order.AddressLine,
+                Email = order.Email,
+                FirstName = order.FirstName,
+                LastName = order.LastName,
+                PhoneNumber = order.PhoneNumber,
+                ZipCode = order.ZipCode,
+                OrderDate = DateTime.UtcNow
+            };
+            // Iterate over the items in the cart, adding the order details for each
             foreach (var item in cartItems)
             {
                 var orderDetail = new OrderDetail
                 {
                     GameId = item.GameId,
-                    OrderId = order.Id,
+                    OrderId = orderData.Id,
                     Price = item.Game.Price,
                     Amount = item.Amount
                 };
+
                 // Set the order total of the shopping cart
                 orderTotal += (item.Amount * item.Game.Price);
 
+                orderData.OrderDetails.Add(orderDetail);
                 this.db.OrderDetails.Add(orderDetail);
-
             }
+
             // Set the order's total to the orderTotal count
-            order.OrderTotal = orderTotal;
+            orderData.OrderTotal = orderTotal;
 
             // Save the order
-            this.db.SaveChanges();
+            this.db.Orders.Add(orderData);
+
             // Empty the shopping cart
             EmptyCart();
-            // Return the OrderId as the confirmation number
-            return order.Id;
         }
+
         // We're using HttpContextBase to allow access to cookies.
         public string GetCartId(HttpContextBase context)
         {
@@ -181,6 +195,7 @@
             }
             return context.Session[CartSessionKey].ToString();
         }
+
         // When a user has logged in, migrate their shopping cart to
         // be associated with their username
         public void MigrateCart(string userName)

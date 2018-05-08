@@ -9,11 +9,11 @@
     public class ShoppingCartController : Controller
     {
         private readonly IGameService games;
-        private readonly IShoppingCart shoppingCart;
+        private readonly IShoppingCartService shoppingCart;
 
 
         public ShoppingCartController(IGameService games,
-                                      IShoppingCart shoppingCart)
+                                      IShoppingCartService shoppingCart)
         {
             this.games = games;
             this.shoppingCart = shoppingCart;
@@ -21,7 +21,7 @@
 
         public ActionResult Index()
         {
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCartService.GetCart(this.HttpContext);
 
             // Set up our ViewModel
             var viewModel = new ShoppingCartServiceModel
@@ -39,7 +39,7 @@
             // Retrieve the game from the database
             var addedGame = this.games.GetGame(id);
             // Add it to the shopping cart
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCartService.GetCart(this.HttpContext);
 
             cart.AddToCart(addedGame);
 
@@ -52,7 +52,7 @@
         public ActionResult RemoveFromCart(int id)
         {
             // Remove the item from the cart
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCartService.GetCart(this.HttpContext);
 
             // Get the name of the game to display confirmation
             var gameName = this.shoppingCart.GetGameFromCart(id).Title;
@@ -77,7 +77,7 @@
         [ChildActionOnly]
         public ActionResult CartSummary()
         {
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCartService.GetCart(this.HttpContext);
 
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");

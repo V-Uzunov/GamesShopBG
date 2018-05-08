@@ -17,7 +17,6 @@ namespace GamesShopBG.Data
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         
-
         public static GamesShopBGDbContext Create()
         {
             return new GamesShopBGDbContext();

@@ -40,7 +40,7 @@
 
             TempData.AddSuccessMessage($"Game {model.Title} was created successful!");
 
-            return RedirectToAction(
+            return this.RedirectToAction(
                 nameof(HomeController.Index),
                 "Home",
                 new { area = string.Empty });
@@ -92,7 +92,7 @@
 
             TempData.AddSuccessMessage($"Game {model.Title} was created successful!");
 
-            return RedirectToAction(
+            return this.RedirectToAction(
                 nameof(HomeController.Index),
                 "Home",
                 new { area = string.Empty });

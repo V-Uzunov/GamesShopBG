@@ -29,10 +29,10 @@
         private void MigrateShoppingCart(string UserName)
         {
             // Associate shopping cart items with logged-in user
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCartService.GetCart(this.HttpContext);
 
             cart.MigrateCart(UserName);
-            Session[ShoppingCart.CartSessionKey] = UserName;
+            Session[ShoppingCartService.CartSessionKey] = UserName;
         }
         public ApplicationSignInManager SignInManager
         {

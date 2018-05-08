@@ -68,7 +68,8 @@
 
     </dl>
 
-    @using (Html.BeginForm("Destroy", "Games", new { area = "Moderator", id = Model.Id }, FormMethod.Post)) {
+    @using (Html.BeginForm("Destroy", "Games", new { area = "Moderator", id = Model.Id }, FormMethod.Post))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
