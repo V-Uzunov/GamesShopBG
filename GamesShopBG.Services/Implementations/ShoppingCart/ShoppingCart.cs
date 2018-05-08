@@ -13,9 +13,10 @@
 
     public class ShoppingCart : Service, IShoppingCart
     {
+        public const string CartSessionKey = "CartId";
+
         string ShoppingCartId { get; set; }
         
-        public const string CartSessionKey = "CartId";
         public static ShoppingCart GetCart(HttpContextBase context)
         {
             var cart = new ShoppingCart();
@@ -172,7 +173,6 @@
                 }
                 else
                 {
-                    EmptyCart();
                     // Generate a new random GUID using System.Guid class
                     Guid tempCartId = Guid.NewGuid();
                     // Send tempCartId back to client as a cookie

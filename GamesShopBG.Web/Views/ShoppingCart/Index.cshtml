@@ -19,13 +19,9 @@
         @foreach (var line in Model.ShoppingCart)
         {
             <tr id="row-@line.Id">
-                <td class="text-left">
-                    @Html.ActionLink(line.Game.Title,"Details", "Store", new { id = line.GameId }, null)
-                            </td>
+                <td class="text-left">@Html.ActionLink(line.Game.Title, "Details", "Store", new { id = line.GameId }, null)</td>
                 <td class="text-right">@line.Game.Price.ToString("c")</td>
-                <td class="text-right" id="item-count-@line.Id">
-                    @line.Amount
-                </td>
+                <td class="text-right" id="item-count-@line.Id">@line.Amount</td>
                 <td class="text-center">
                     <a href="#" class="RemoveLink"
                        data-id="@line.Id">
