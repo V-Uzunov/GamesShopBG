@@ -40,7 +40,7 @@
             var cart = ShoppingCartService.GetCart(this.HttpContext);
             if (cart.GetCartItems().Count == 0)
             {
-                TempData.AddErrorMessage("Your cart is empty, add some games first");
+                TempData.AddErrorMessage("Your cart is empty, add some products first");
 
                 return this.RedirectToAction(
                 nameof(ShoppingCartController.Index),

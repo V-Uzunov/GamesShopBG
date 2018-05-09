@@ -9,12 +9,12 @@
 <div class="row">
     @using (Html.BeginForm("Search", "Home"))
     {
-            <div class="col-md-1 pull-right">
-                <button type="submit" class="btn btn-sm pull-right"><span class="glyphicon glyphicon-search"></span> Search</button>
-            </div>
-            <div class="col-md-4 pull-right">
-                <input required type="search" name="SearchText" class="form-control" placeholder="Search..." />
-            </div>
+        <div class="col-md-1 pull-right">
+            <button type="submit" class="btn btn-sm pull-right"><span class="glyphicon glyphicon-search"></span> Search</button>
+        </div>
+        <div class="col-md-4 pull-right">
+            <input required type="search" name="SearchText" class="form-control" placeholder="Search..." />
+        </div>
 
     }
 </div>
@@ -23,5 +23,4 @@
 <div class="row">
     @Html.Partial("_GamesListingPartial", Model.Games)
 </div>
-
 

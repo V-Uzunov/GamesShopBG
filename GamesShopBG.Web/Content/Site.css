@@ -2,6 +2,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family:;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -71,6 +72,10 @@ footer {
     text-align: center;
 }
 
+.navbar {
+    background: #333333;
+    color: white;
+}
 
 .btn {
     border: 2px;
@@ -78,7 +83,7 @@ footer {
     background: none;
     outline: none;
     color: white;
-    background-color: darkgrey;
+    background-color:darkslategray;
     padding: 10px 25px;
     margin: 0px;
     font: 16px 'Open Sans', sans-serif;

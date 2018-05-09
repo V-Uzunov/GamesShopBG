@@ -155,7 +155,8 @@
                     GameId = item.GameId,
                     OrderId = orderData.Id,
                     Price = item.Game.Price,
-                    Amount = item.Amount
+                    Amount = item.Amount,
+                    GameTitle = item.GameTitle
                 };
 
                 // Set the order total of the shopping cart

@@ -13,7 +13,7 @@
                         <li class="list-group-item"><b>Price:</b> @games.Price.ToString("c")</li>
                         <li class="list-group-item"><b>Size:</b> @games.Size.ToString("f") GB</li>
                         @{
-        var subDescript = games.Description.Substring(0, DataConstants.GamesDescriptionMinLenght);
+                            var subDescript = games.Description.Substring(0, DataConstants.GamesDescriptionMinLenght);
                         }
                         <li class="list-group-item"><b>Description:</b> @subDescript...</li>
                     </ul>

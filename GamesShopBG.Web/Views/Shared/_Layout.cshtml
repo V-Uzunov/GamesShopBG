@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Games Store BG</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,7 +21,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, "")</li>
-                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart", new { area = ""});}</li>
+                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart", new { area = "" });}</li>
                     @if (User.IsInRole(GlobalConstants.AdminRole))
                     {
                         <li>@Html.ActionLink("Admin", "Index", new { controller = "Users", area = "Admin" })</li>

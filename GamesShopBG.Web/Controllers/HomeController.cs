@@ -26,6 +26,5 @@
 
             return View(model);
         }
-
     }
 }

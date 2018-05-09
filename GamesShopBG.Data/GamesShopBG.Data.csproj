@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201805041042546_EditDbColumn.Designer.cs">
       <DependentUpon>201805041042546_EditDbColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805090845383_EditOrdersColumn.cs" />
+    <Compile Include="Migrations\201805090845383_EditOrdersColumn.Designer.cs">
+      <DependentUpon>201805090845383_EditOrdersColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Order.cs" />
@@ -115,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805041042546_EditDbColumn.resx">
       <DependentUpon>201805041042546_EditDbColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805090845383_EditOrdersColumn.resx">
+      <DependentUpon>201805090845383_EditOrdersColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
