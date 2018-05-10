@@ -265,6 +265,8 @@
     <Content Include="Images\1.png" />
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.jpg" />
+    <Content Include="Images\awesome-gif-wallpaper-40192-41130-hd-wallpapers.jpg" />
+    <Content Include="Images\battlefield_soldier_light_tank_airplane_15750_1920x1080.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
