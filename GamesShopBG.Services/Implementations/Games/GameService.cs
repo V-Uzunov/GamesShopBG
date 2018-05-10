@@ -1,7 +1,7 @@
 ﻿namespace GamesShopBG.Services.Implementations.Games
 {
     using AutoMapper.QueryableExtensions;
-    using GamesShopBG.Data.Models;
+    using GamesShopBG.Common;
     using GamesShopBG.Services.Interfaces.Games;
     using GamesShopBG.Services.Models.Games;
     using System.Collections.Generic;
@@ -30,16 +30,24 @@
                          .Where(g => g.Id == id)
                          .FirstOrDefaultAsync();
 
-        public IEnumerable<GameListingServiceModel> GetAllGames()
-            => this.db
+        public async Task<IEnumerable<GameListingServiceModel>> GetAllGamesAsync(int page = 1)
+            => await this.db
                    .Games
+                   .OrderByDescending(a => a.Id)
+                   .Skip((page - 1) * GlobalConstants.GamePagesSize)
+                   .Take(GlobalConstants.GamePagesSize)
                    .ProjectTo<GameListingServiceModel>()
-                   .ToList();
+                   .ToListAsync();
 
         public GamesCartServiceModel GetGame(int gameId)
             => this.db
                    .Games
                    .ProjectTo<GamesCartServiceModel>()
-                   .FirstOrDefault(g=> g.Id == gameId);
+                   .FirstOrDefault(g => g.Id == gameId);
+
+        public async Task<int> GetTotalAsync()
+            => await this.db
+                   .Games
+                   .CountAsync();
     }
 }

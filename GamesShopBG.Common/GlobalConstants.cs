@@ -7,5 +7,7 @@
 
         public const string AdminArea = "Admin";
         public const string ModeratorArea = "Moderator";
+
+        public const int GamePagesSize = 6;
     }
 }

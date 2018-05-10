@@ -6,13 +6,14 @@
 
     public interface IGameService
     {
-        IEnumerable<GameListingServiceModel> GetAllGames();
+        Task<IEnumerable<GameListingServiceModel>> GetAllGamesAsync(int page = 1);
 
         Task<IEnumerable<GameListingServiceModel>> FindAsync(string searchText);
         
         Task<GamesDetailsServiceModel> FindByIdAsync(int id);
 
         GamesCartServiceModel GetGame(int gameId);
-        
+
+        Task<int> GetTotalAsync();
     }
 }

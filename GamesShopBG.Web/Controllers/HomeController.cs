@@ -14,13 +14,15 @@
             this.games = games;
         }
 
-        public ActionResult Index()
-            => this.View(new HomeIndexViewModel
+        public async Task<ActionResult> Index(int page = 1)
+            => this.View(new HomeIndexGamesListingsViewModel
             {
-                Games = this.games.GetAllGames()
+                Games =await this.games.GetAllGamesAsync(page),
+                TotalGames =await this.games.GetTotalAsync(),
+                CurrentPage = page
             });
 
-        public async Task<ActionResult> Search(HomeIndexViewModel model)
+        public async Task<ActionResult> Search(HomeIndexGamesListingsViewModel model)
         {
             model.Games = await this.games.FindAsync(model.SearchText);
 

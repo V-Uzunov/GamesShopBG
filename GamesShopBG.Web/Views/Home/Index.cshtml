@@ -1,4 +1,4 @@
-﻿@model  HomeIndexViewModel
+﻿@model  HomeIndexGamesListingsViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -24,3 +24,18 @@
     @Html.Partial("_GamesListingPartial", Model.Games)
 </div>
 
+<div class="row">
+    @if (Model.TotalGames > Model.Games.Count())
+    {
+
+        <ul class="pagination">
+            <li class="page-item" style="@(Model.CurrentPage == 1 ? "display:none" : string.Empty)">@Html.ActionLink("Previous", "", new { page = Model.PreviousPage }, new { @class = "page-link btn" })</li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(Model.CurrentPage == i ? "active" : string.Empty) ">@Html.ActionLink($"{i}", "", new { page = i }, new { @class = "page-link btn" })</li>
+
+            }
+            <li class="page-item" style="@(Model.CurrentPage == Model.TotalPages ? "display:none" : string.Empty)">@Html.ActionLink("Next", "", new { page = Model.NextPage }, new { @class = "page-link btn" })</li>
+        </ul>
+    }
+</div>

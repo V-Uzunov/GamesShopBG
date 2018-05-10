@@ -108,3 +108,8 @@ footer {
     display: flex;
     margin: auto;
 }
+
+.pagination > li > a, .pagination > li > span {
+    color: #FFF;
+    background-color: black;
+}
