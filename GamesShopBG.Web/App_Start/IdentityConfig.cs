@@ -32,6 +32,8 @@
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class UserManager : UserManager<User>
     {
+        private UserStore<User> userStore;
+
         public UserManager(IUserStore<User> store)
             : base(store)
         {
