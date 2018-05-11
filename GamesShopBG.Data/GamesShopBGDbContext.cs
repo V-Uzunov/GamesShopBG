@@ -7,7 +7,7 @@ namespace GamesShopBG.Data
     public class GamesShopBGDbContext : IdentityDbContext<User>
     {
         public GamesShopBGDbContext()
-            : base("GamesShopBGDb", throwIfV1Schema: false)
+            : base("GamesShopBGConnection")
         {
 
         }
