@@ -57,6 +57,7 @@ textarea {
 
 .thumbnail {
     border-radius: 25px;
+    margin: 5px;
 }
 
     .thumbnail img {
@@ -64,7 +65,9 @@ textarea {
         height: 200px;
         display: block;
     }
-
+.list-group-item {
+    padding: unset;
+}
 footer {
     background: #333333;
     color: white;
