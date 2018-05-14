@@ -14,6 +14,7 @@
             this.games = games;
         }
 
+        //GET: /Home/Index
         public async Task<ActionResult> Index(int page = 1)
             => this.View(new HomeIndexGamesListingsViewModel
             {
@@ -22,6 +23,7 @@
                 CurrentPage = page
             });
 
+        //GET: /Home/Search/
         public async Task<ActionResult> Search(HomeIndexGamesListingsViewModel model)
         {
             model.Games = await this.games.FindAsync(model.SearchText);

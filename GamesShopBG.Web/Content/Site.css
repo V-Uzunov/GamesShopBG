@@ -38,6 +38,7 @@ textarea {
 
     .carousel-inner > .item > img {
         position: absolute;
+        height: inherit;
         top: 50%;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
@@ -65,9 +66,11 @@ textarea {
         height: 200px;
         display: block;
     }
+
 .list-group-item {
     padding: unset;
 }
+
 footer {
     background: #333333;
     color: white;

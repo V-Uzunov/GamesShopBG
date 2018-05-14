@@ -16,11 +16,11 @@
             this.games = games;
         }
 
-        //GET: /Moderator/Game/Create
+        //GET: /Moderator/Games/Create
         public ActionResult Create()
             => this.View();
 
-        //POST: /Moderator/Game/Create
+        //POST: /Moderator/Games/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ModeratorGameServiceModel model)
@@ -46,7 +46,7 @@
                 new { area = string.Empty });
         }
 
-        //GET: /Moderator/Game/Edit/{id}
+        //GET: /Moderator/Games/Edit/{id}
         public async Task<ActionResult> Edit(int id)
         {
             var game =await this.games.FindByIdAsync(id);
@@ -69,7 +69,7 @@
             });
         }
 
-        //POST: /Moderator/Game/Edit/{id}
+        //POST: /Moderator/Games/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, ModeratorGameServiceModel model)
@@ -98,7 +98,7 @@
                 new { area = string.Empty });
         }
 
-        //GET: /Moderator/Game/Delete/{id}
+        //GET: /Moderator/Games/Delete/{id}
         public async Task<ActionResult> Delete(int id)
         {
             var game = await this.games.FindByIdAsync(id);
@@ -121,7 +121,7 @@
             });
         }
 
-        //POST: /Moderator/Game/Delete/{id}
+        //POST: /Moderator/Games/Delete/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Destroy(int id)
