@@ -35,6 +35,7 @@
 
         //POST: /Order/Checkout
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Checkout(OrderServiceModelForShoppingCart model)
         {
             var cart = ShoppingCartService.GetCart(this.HttpContext);
