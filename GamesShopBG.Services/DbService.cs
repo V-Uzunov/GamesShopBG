@@ -2,11 +2,11 @@
 {
     using GamesShopBG.Data;
 
-    public abstract class Service
+    public abstract class DbService
     {
         protected readonly GamesShopBGDbContext db;
 
-        protected Service()
+        protected DbService()
         {
             this.db = GamesShopBGDbContext.Create();
         }

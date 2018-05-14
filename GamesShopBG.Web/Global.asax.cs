@@ -13,6 +13,8 @@
     {
         protected void Application_Start()
         {
+            ViewEngineConfiguration.RegisterViewEngine(ViewEngines.Engines);
+
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<GamesShopBGDbContext, Configuration>());
             AutoMapperConfig.ConfigureAutomapper();
             

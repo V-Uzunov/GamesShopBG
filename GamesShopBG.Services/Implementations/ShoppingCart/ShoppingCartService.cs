@@ -12,7 +12,7 @@
     using System.Web;
     using System.Web.Mvc;
 
-    public class ShoppingCartService : Service, IShoppingCartService
+    public class ShoppingCartService : DbService, IShoppingCartService
     {
         public const string CartSessionKey = "CartId";
 

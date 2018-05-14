@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class AdminUserService : Service, IAdminUserService
+    public class AdminUserService : DbService, IAdminUserService
     {
         
         public IEnumerable<AdminUserListingServiceModel> All()

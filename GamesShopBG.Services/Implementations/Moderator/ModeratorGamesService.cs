@@ -9,7 +9,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class ModeratorGamesService : Service, IModeratorGamesService
+    public class ModeratorGamesService : DbService, IModeratorGamesService
     {
         public async Task CreateAsync(string title,
             decimal price,

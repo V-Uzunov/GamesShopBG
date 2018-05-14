@@ -131,7 +131,7 @@
     <Compile Include="Models\ShoppingCart\ShoppingCartRemoveServiceModel.cs" />
     <Compile Include="Models\ShoppingCart\ShoppingCartServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="DbService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GamesShopBG.Common\GamesShopBG.Common.csproj">

@@ -9,7 +9,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class GameService : Service, IGameService
+    public class GameService : DbService, IGameService
     {
         public async Task<IEnumerable<GameListingServiceModel>> FindAsync(string searchText)
         {
