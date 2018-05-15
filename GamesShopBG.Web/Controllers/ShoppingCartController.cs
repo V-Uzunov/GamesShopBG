@@ -49,7 +49,6 @@
         //
         // AJAX: /ShoppingCart/RemoveFromCart/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult RemoveFromCart(int id)
         {
             // Remove the item from the cart

@@ -120,9 +120,9 @@
         }
         public decimal GetTotal()
         {
-            // Multiply album price by count of that album to get 
-            // the current price for each of those albums in the cart
-            // sum all album price totals to get the cart total
+            // Multiply game price by count of that game to get 
+            // the current price for each of those game in the cart
+            // sum all game price totals to get the cart total
             decimal? total = (from cartItems in this.db.ShoppingCartItems
                               where cartItems.CartId == ShoppingCartId
                               select (int?)cartItems.Amount *

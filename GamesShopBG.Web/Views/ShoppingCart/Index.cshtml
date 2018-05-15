@@ -49,7 +49,7 @@
 </custom:div>
 
 <div class="text-center">
-    @Html.ActionLink("Check out now!", "Checkout", "Order", new { area = ""}, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Check out now!", "Checkout", "Order", new { area = "" }, new { @class = "btn btn-primary" })
 </div>
 
 
@@ -75,6 +75,24 @@
                             $('#update-message').text(data.Message);
                             $('#cart-status').text('Cart (' + data.CartCount + ')');
                         });
+
+                    //$.ajax({
+                    //    url: "/ShoppingCart/RemoveFromCart",
+                    //    method: "POST",
+                    //    data: { "id": recordToDelete },
+                    //    success: remove
+                    //})
+
+                    //function remove(data) {
+                    //    if (data.ItemCount == 0) {
+                    //        $('#row-' + data.DeleteId).fadeOut('slow');
+                    //    } else {
+                    //        $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                    //    }
+                    //    $('#cart-total').text(data.CartTotal);
+                    //    $('#update-message').text(data.Message);
+                    //    $('#cart-status').text('Cart (' + data.CartCount + ')');
+                    //}
                 }
             });
         });
