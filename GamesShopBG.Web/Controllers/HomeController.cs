@@ -15,7 +15,6 @@
         }
 
         //GET: /Home/Index
-        [OutputCache(Duration = 15 * 60)]
         public async Task<ActionResult> Index(int page = 1)
             => this.View(new HomeIndexGamesListingsViewModel
             {
