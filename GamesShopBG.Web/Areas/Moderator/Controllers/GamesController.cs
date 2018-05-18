@@ -38,7 +38,7 @@
                                          model.Description,
                                          model.ReleaseDate);
 
-            TempData.AddSuccessMessage($"Game "{model.Title}" was created successful!");
+            TempData.AddSuccessMessage($"Game {model.Title} was created successful!");
 
             return this.RedirectToAction(
                 nameof(HomeController.Index),
@@ -74,7 +74,6 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, ModeratorGameServiceModel model)
         {
-        
             if (!ModelState.IsValid)
             {
                 return this.View();
@@ -89,7 +88,7 @@
                                             model.Description,
                                             model.ReleaseDate);
 
-            TempData.AddSuccessMessage($"Game "{model.Title}" was edited successful!");
+            TempData.AddSuccessMessage($"Game {model.Title} was edited successful!");
 
             return this.RedirectToAction(
                 nameof(HomeController.Index),
@@ -134,7 +133,7 @@
 
             await this.games.DeleteAsync(id);
 
-            TempData.AddErrorMessage($"Game "{game.Title}" was deleted successful!");
+            TempData.AddErrorMessage($"Game {game.Title} was deleted successful!");
 
             return this.RedirectToAction(nameof(HomeController.Index),
                     "Home",
