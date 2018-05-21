@@ -124,9 +124,9 @@ footer {
 
 input[type="search"] {
     border: solid;
-    margin: 5%;
+    margin: 15px;
 }
 
 #btn-edit {
-    margin: 2.5%;
+    margin: 17px;
 }
