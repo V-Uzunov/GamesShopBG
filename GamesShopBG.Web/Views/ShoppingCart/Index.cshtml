@@ -76,7 +76,7 @@
                         } else {
                             $('#item-count-' + data.DeleteId).text(data.ItemCount);
                         }
-                        $('#cart-total').text(data.CartTotal);
+                        $('#cart-total').text('$' + parseFloat(data.CartTotal).toFixed(2));
                         $('#update-message').text(data.Message);
                         $('#cart-status').text('Cart (' + data.CartCount + ')');
                     }
