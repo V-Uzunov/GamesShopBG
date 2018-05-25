@@ -1,5 +1,6 @@
 # Games Shop BG
 Games Shop BG is a games store with Shopping cart, Reviews, Roles and CRUD operations.
+
 [![Build status](https://ci.appveyor.com/api/projects/status/3qef924tdwargsvf?svg=true)](https://ci.appveyor.com/project/V-Uzunov/gamesshopbg)
 
 
