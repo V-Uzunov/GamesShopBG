@@ -119,7 +119,6 @@
     <Compile Include="Interfaces\Admin\IAdminUserService.cs" />
     <Compile Include="Interfaces\Games\IGameService.cs" />
     <Compile Include="Interfaces\Moderator\IModeratorGamesService.cs" />
-    <Compile Include="Interfaces\Order\IOrderService.cs" />
     <Compile Include="Interfaces\ShoppingCart\IShoppingCartService.cs" />
     <Compile Include="Models\Admin\AdminUserListingServiceModel.cs" />
     <Compile Include="Models\Games\GameListingServiceModel.cs" />
@@ -131,7 +130,6 @@
     <Compile Include="Models\ShoppingCart\ShoppingCartRemoveServiceModel.cs" />
     <Compile Include="Models\ShoppingCart\ShoppingCartServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DbService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GamesShopBG.Common\GamesShopBG.Common.csproj">

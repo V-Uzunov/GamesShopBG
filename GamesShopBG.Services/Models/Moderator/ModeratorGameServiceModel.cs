@@ -36,8 +36,9 @@
         [MinLength(DataConstants.GamesDescriptionMinLenght, ErrorMessage = "Description minimum length is 20")]
         public string Description { get; set; }
 
-        [DataType(DataType.Date)]
         [Display(Name = "Release Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime ReleaseDate { get; set; }
 
     }

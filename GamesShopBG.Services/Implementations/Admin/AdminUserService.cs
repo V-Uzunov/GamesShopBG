@@ -1,41 +1,49 @@
 ﻿namespace GamesShopBG.Services.Implementations.Admin
 {
     using AutoMapper.QueryableExtensions;
+    using GamesShopBG.Data;
     using GamesShopBG.Services.Interfaces.Admin;
     using GamesShopBG.Services.Models.Admin;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class AdminUserService : DbService, IAdminUserService
+    public class AdminUserService :  IAdminUserService
     {
-        
+        private readonly IGamesShopBGData data;
+
+        public AdminUserService(IGamesShopBGData data)
+        {
+            this.data = data;
+        }
+
         public IEnumerable<AdminUserListingServiceModel> All()
-            => this.db
-            .Users
-            .ProjectTo<AdminUserListingServiceModel>()
-            .ToList();
+            => this.data
+               .Users
+               .All()
+               .ProjectTo<AdminUserListingServiceModel>();
         
         public void Delete(string userId)
         {
-            var findUser = this.db.Users.Find(userId);
+            var findUser = this.data.Users.Find(userId);
 
             if (findUser == null)
             {
                 return;
             }
 
-            this.db.Users.Remove(findUser);
+            this.data.Users.Delete(findUser);
 
-            this.db.SaveChanges();
+            this.data.Users.SaveChanges();
         }
 
         public IEnumerable<IdentityRole> GetAllRoles()
-            => this.db
-                .Roles;
+            => this.data
+                .Roles
+                .All();
 
         public IdentityRole GetRoles(string role)
-            => this.db
+            => this.data
                 .Roles
                 .Find(role);
     }

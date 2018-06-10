@@ -6,12 +6,12 @@
 
     public interface IModeratorGamesService
     {
-        Task CreateAsync(string title, decimal price, double size, string videoUrl, string thumbnailUrl, string description, DateTime releaseDate);
+        void Create(ModeratorGameServiceModel model);
 
         Task<ModeratorGameServiceModel> FindByIdAsync(int id);
 
-        Task EditGameAsync(int id, string title, decimal price, double size, string videoUrl, string thumbnailUrl, string description, DateTime releaseDate);
+        void EditGame(ModeratorGameServiceModel model);
 
-        Task DeleteAsync(int id);
+        void Delete(int id);
     }
 }

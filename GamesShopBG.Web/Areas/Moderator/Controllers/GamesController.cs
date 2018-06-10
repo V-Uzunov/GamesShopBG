@@ -23,20 +23,14 @@
         //POST: /Moderator/Games/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(ModeratorGameServiceModel model)
+        public ActionResult Create(ModeratorGameServiceModel model)
         {
             if (!ModelState.IsValid)
             {
                 return this.View();
             }
 
-            await this.games.CreateAsync(model.Title,
-                                         model.Price,
-                                         model.Size,
-                                         model.VideoUrl,
-                                         model.ThumbnailUrl,
-                                         model.Description,
-                                         model.ReleaseDate);
+            this.games.Create(model);
 
             TempData.AddSuccessMessage($"Game {model.Title} was created successful!");
 
@@ -72,21 +66,14 @@
         //POST: /Moderator/Games/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, ModeratorGameServiceModel model)
+        public ActionResult Edit(ModeratorGameServiceModel model)
         {
             if (!ModelState.IsValid)
             {
                 return this.View();
             }
 
-            await this.games.EditGameAsync(id,
-                                            model.Title,
-                                            model.Price,
-                                            model.Size,
-                                            model.VideoUrl,
-                                            model.ThumbnailUrl,
-                                            model.Description,
-                                            model.ReleaseDate);
+            this.games.EditGame(model);
 
             TempData.AddSuccessMessage($"Game {model.Title} was edited successful!");
 
@@ -131,7 +118,7 @@
                 return this.HttpNotFound();
             }
 
-            await this.games.DeleteAsync(id);
+            this.games.Delete(id);
 
             TempData.AddErrorMessage($"Game {game.Title} was deleted successful!");
 

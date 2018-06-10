@@ -20,6 +20,7 @@ namespace GamesShopBG.Web.App_Start
     using GamesShopBG.Services.Implementations.Games;
     using GamesShopBG.Services.Implementations.ShoppingCart;
     using GamesShopBG.Services.Interfaces.ShoppingCart;
+    using System.Data.Entity;
 
     public class NinjectConfig
     {
@@ -71,6 +72,16 @@ namespace GamesShopBG.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+
+            kernel
+                .Bind<DbContext>()
+                .To<GamesShopBGDbContext>()
+                .InRequestScope();
+
+            kernel
+                .Bind<IGamesShopBGData>()
+                .To<GamesShopBGData>()
+                .InRequestScope();
 
             kernel
                .Bind<IAdminUserService>()

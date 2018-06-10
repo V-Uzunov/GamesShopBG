@@ -4,6 +4,7 @@
     using GamesShopBG.Services.Interfaces.Games;
     using GamesShopBG.Services.Interfaces.ShoppingCart;
     using GamesShopBG.Services.Models.ShoppingCart;
+    using System.Linq;
     using System.Web.Mvc;
 
     public class ShoppingCartController : Controller
@@ -26,14 +27,14 @@
             // Set up our ViewModel
             var viewModel = new ShoppingCartServiceModel
             {
-                 ShoppingCart = cart.GetCartItems(),
+                 ShoppingCart = cart.GetCartItems().ToList(),
                  ShoppingCartTotal = cart.GetTotal()
             };
             // Return the view
             return View(viewModel);
         }
         //
-        // GET: /Store/AddToCart/5
+        // GET: /ShoppingCart/AddToCart/5
         public ActionResult AddToCart(int id)
         {
             // Retrieve the game from the database

@@ -3,7 +3,7 @@
     using GamesShopBG.Services.Models.Games;
     using GamesShopBG.Services.Models.Order;
     using GamesShopBG.Services.Models.ShoppingCart;
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Web;
 
     public interface IShoppingCartService
@@ -16,7 +16,7 @@
         void MigrateCart(string userName);
         int RemoveFromCart(int id);
         void EmptyCart();
-        List<ShoppingCartItemServiceModel> GetCartItems();
+        IQueryable<ShoppingCartItemServiceModel> GetCartItems();
 
         int GetCount();
         decimal GetTotal();

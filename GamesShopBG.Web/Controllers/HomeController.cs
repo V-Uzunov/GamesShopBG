@@ -18,15 +18,15 @@
         public async Task<ActionResult> Index(int page = 1)
             => this.View(new HomeIndexGamesListingsViewModel
             {
-                Games =await this.games.GetAllGamesAsync(page),
+                Games = this.games.GetAllGames(page),
                 TotalGames =await this.games.GetTotalAsync(),
                 CurrentPage = page
             });
 
         //GET: /Home/Search/
-        public async Task<ActionResult> Search(HomeIndexGamesListingsViewModel model)
+        public ActionResult Search(HomeIndexGamesListingsViewModel model)
         {
-            model.Games = await this.games.FindAsync(model.SearchText);
+            model.Games = this.games.Find(model.SearchText);
 
             return View(model);
         }

@@ -1,6 +1,7 @@
 ﻿namespace GamesShopBG.Services.Implementations.Moderator
 {
     using AutoMapper.QueryableExtensions;
+    using GamesShopBG.Data;
     using GamesShopBG.Data.Models;
     using GamesShopBG.Services.Interfaces.Moderator;
     using GamesShopBG.Services.Models.Moderator;
@@ -9,73 +10,70 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class ModeratorGamesService : DbService, IModeratorGamesService
+    public class ModeratorGamesService : IModeratorGamesService
     {
-        public async Task CreateAsync(string title,
-            decimal price,
-            double size,
-            string videoUrl,
-            string thumbnailUrl,
-            string description,
-            DateTime releaseDate)
+        private readonly IGamesShopBGData data;
+
+        public ModeratorGamesService(IGamesShopBGData data)
+        {
+            this.data = data;
+        }
+
+        public void Create(ModeratorGameServiceModel model)
         {
             var game = new Game
             {
-                Title = title,
-                Price = price,
-                Size = size,
-                VideoUrl = videoUrl,
-                ThumbnailUrl = thumbnailUrl,
-                Description = description,
-                ReleaseDate = releaseDate
+                Title = model.Title,
+                Price = model.Price,
+                Size = model.Size,
+                VideoUrl = model.VideoUrl,
+                ThumbnailUrl = model.ThumbnailUrl,
+                Description = model.Description,
+                ReleaseDate = model.ReleaseDate
             };
 
-            this.db.Games.Add(game);
-            await this.db.SaveChangesAsync();
+            this.data.Games.Add(game);
+            this.data.Games.SaveChanges();
         }
 
-        public async Task EditGameAsync(int id,
-            string title,
-            decimal price,
-            double size,
-            string videoUrl,
-            string thumbnailUrl,
-            string description,
-            DateTime releaseDate)
+        public void EditGame(ModeratorGameServiceModel model)
         {
-            var gameExist = await this.db.Games.FindAsync(id);
+            var gameExist = this.data.Games.Find(model.Id);
 
             if (gameExist == null)
             {
                 return;
             }
-            gameExist.Title = title;
-            gameExist.Price = price;
-            gameExist.Size = size;
-            gameExist.VideoUrl = videoUrl;
-            gameExist.ThumbnailUrl = thumbnailUrl;
-            gameExist.Description = description;
-            gameExist.ReleaseDate = releaseDate;
 
-            await this.db.SaveChangesAsync();
+            gameExist.Title = model.Title;
+            gameExist.Price = model.Price;
+            gameExist.Size = model.Size;
+            gameExist.VideoUrl = model.VideoUrl;
+            gameExist.ThumbnailUrl = model.ThumbnailUrl;
+            gameExist.Description = model.Description;
+            gameExist.ReleaseDate = model.ReleaseDate;
+
+            this.data.Games.Update(gameExist);
+            this.data.Games.SaveChanges();
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(int id)
         {
-            var gameId = await this.db.Games.FindAsync(id);
+            var gameId = this.data.Games.Find(id);
 
             if (gameId == null)
             {
                 return;
             }
 
-            this.db.Games.Remove(gameId);
-            await this.db.SaveChangesAsync();
+            this.data.Games.Delete(gameId);
+            this.data.Games.SaveChanges();
         }
 
         public async Task<ModeratorGameServiceModel> FindByIdAsync(int id)
-            => await this.db
+            => await this.data
                     .Games
+                    .All()
                     .Where(g => g.Id == id)
                     .ProjectTo<ModeratorGameServiceModel>()
                     .FirstOrDefaultAsync();

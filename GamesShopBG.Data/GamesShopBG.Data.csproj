@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="DataConstants.cs" />
     <Compile Include="GamesShopBGDbContext.cs" />
+    <Compile Include="IGamesShopBGData.cs" />
     <Compile Include="Migrations\201805031051066_init.cs" />
     <Compile Include="Migrations\201805031051066_init.Designer.cs">
       <DependentUpon>201805031051066_init.cs</DependentUpon>
@@ -100,6 +101,9 @@
     <Compile Include="Models\ShoppingCartItem.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="GamesShopBGData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

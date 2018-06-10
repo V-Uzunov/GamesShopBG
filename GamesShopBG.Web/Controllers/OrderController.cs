@@ -21,7 +21,7 @@
         public ActionResult Checkout()
         {
             var cart = ShoppingCartService.GetCart(this.HttpContext);
-            if (cart.GetCartItems().Count == 0)
+            if (cart.GetCartItems().Count() == 0)
             {
                 TempData.AddErrorMessage("Your cart is empty, add some games first");
 
@@ -39,7 +39,7 @@
         public ActionResult Checkout(OrderServiceModelForShoppingCart model)
         {
             var cart = ShoppingCartService.GetCart(this.HttpContext);
-            if (cart.GetCartItems().Count == 0)
+            if (cart.GetCartItems().Count() == 0)
             {
                 TempData.AddErrorMessage("Your cart is empty, add some products first");
 
