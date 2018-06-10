@@ -3,13 +3,11 @@ Games Shop BG is a games store with Shopping cart, Reviews, Roles and CRUD opera
 
 [![Build status](https://ci.appveyor.com/api/projects/status/3qef924tdwargsvf?svg=true)](https://ci.appveyor.com/project/V-Uzunov/gamesshopbg)
 
-<p>
-  <img src="https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Home-1.PNG" width="350"/>
-  <img src="https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Home-2.PNG" width="350"/>
-  <img src="https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Game-Details.PNG" width="350"/>
-  <img src="https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Admin-Panel.PNG" width="350"/>
-  <img src="https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/ShoppingCart.PNG" width="350"/>
-</p>
+![Home-1](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Home-1.PNG)
+![Home-2](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Home-2.PNG)
+![Game-Details](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Game-Details.PNG)
+![Admin-Panel](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Admin-Panel.PNG)
+![Shopping-Cart](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/ShoppingCart.PNG)
 
  # General Requirements
 The application is implemented using ASP.NET Framework. Using Visual Studio 2017 <br />
