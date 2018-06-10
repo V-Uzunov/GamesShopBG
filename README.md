@@ -3,7 +3,7 @@ Games Shop BG is a games store with Shopping cart, Reviews, Roles and CRUD opera
 
 [![Build status](https://ci.appveyor.com/api/projects/status/3qef924tdwargsvf?svg=true)](https://ci.appveyor.com/project/V-Uzunov/gamesshopbg)
 
-<p align="center">
+<p>
   <img src="https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Home-1.PNG" width="350"/>
   <img src="https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Home-2.PNG" width="350"/>
   <img src="https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Game-Details.PNG" width="350"/>
