@@ -50,5 +50,7 @@
         Task<IdentityResult> AddPasswordAsync(string userId, string password);
 
         User FindById(string userId);
+
+        Task<IdentityResult> AddToRolesAsync(string userId, params string[] roles);
     }
 }

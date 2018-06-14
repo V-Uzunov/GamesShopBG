@@ -21,6 +21,8 @@ namespace GamesShopBG.Web.App_Start
     using GamesShopBG.Services.Implementations.ShoppingCart;
     using GamesShopBG.Services.Interfaces.ShoppingCart;
     using System.Data.Entity;
+    using Microsoft.AspNet.Identity.Owin;
+    using GamesShopBG.Auth;
 
     public class NinjectConfig
     {
@@ -78,15 +80,15 @@ namespace GamesShopBG.Web.App_Start
                 .To<GamesShopBGDbContext>()
                 .InRequestScope();
 
+            kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
+            kernel.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<UserManager>());
+
             kernel
                 .Bind<IGamesShopBGData>()
                 .To<GamesShopBGData>()
                 .InRequestScope();
 
-            kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
-            kernel.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<UserManager>());
             kernel
-
                .Bind<IAdminUserService>()
                .To<AdminUserService>()
                .InRequestScope();

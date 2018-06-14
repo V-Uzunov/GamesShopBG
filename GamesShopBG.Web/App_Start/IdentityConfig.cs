@@ -1,5 +1,6 @@
 ﻿namespace GamesShopBG.Web
 {
+    using GamesShopBG.Auth;
     using GamesShopBG.Data;
     using GamesShopBG.Data.Models;
     using Microsoft.AspNet.Identity;
@@ -30,7 +31,7 @@
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class UserManager : UserManager<User>
+    public class UserManager : UserManager<User>, IUserService
     {
         public UserManager(IUserStore<User> store)
             : base(store)
@@ -50,11 +51,11 @@
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = false,
-                RequireDigit = false,
-                RequireLowercase = false,
-                RequireUppercase = false,
+                //RequiredLength = 6,
+                //RequireNonLetterOrDigit = true,
+                //RequireDigit = true,
+                //RequireLowercase = true,
+                //RequireUppercase = true,
             };
 
             // Configure user lockout defaults
@@ -83,10 +84,15 @@
             }
             return manager;
         }
+
+        public User FindById(string userId)
+        {
+            return UserManagerExtensions.FindById(this, userId);
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<User, string>
+    public class ApplicationSignInManager : SignInManager<User, string>, ISignInService
     {
         public ApplicationSignInManager(UserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)

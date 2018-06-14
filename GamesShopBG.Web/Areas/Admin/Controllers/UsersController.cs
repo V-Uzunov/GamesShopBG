@@ -1,5 +1,6 @@
 ﻿namespace GamesShopBG.Web.Areas.Admin.Controllers
 {
+    using GamesShopBG.Auth;
     using GamesShopBG.Data;
     using GamesShopBG.Services.Interfaces.Admin;
     using GamesShopBG.Web.Areas.Admin.Models;
@@ -11,11 +12,13 @@
     public class UsersController : BaseAdminController
     {
         private readonly IAdminUserService users;
+        private readonly IUserService userService;
 
         public UsersController(IAdminUserService users,
-            GamesShopBGDbContext dbContext) : base(dbContext)
+                                IUserService userService)
         {
             this.users = users;
+            this.userService = userService;
         }
 
 
@@ -43,7 +46,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult AddToRole(AddUserToRoleFormModel model)
         {
-            var user = this.userManager.FindById(model.UserId);
+            var user = this.userService.FindById(model.UserId);
             var role = this.users.GetRoles(model.Role);
 
             var userExists = user != null;
@@ -58,7 +61,7 @@
                 return RedirectToAction(nameof(Index));
             }
 
-            this.userManager.AddToRole(user.Id, role.Name);
+            this.userService.AddToRolesAsync(user.Id, role.Name);
 
             TempData.AddSuccessMessage($"User {user.UserName} successfully added to the {role.Name} role.");
             return RedirectToAction(nameof(Index));
@@ -67,7 +70,7 @@
         [Route("/{userId}")]
         public ActionResult DeleteUser(string userId)
         {
-            var findUser = this.userManager.FindById(userId);
+            var findUser = this.userService.FindById(userId);
 
             if (findUser == null)
             {
@@ -88,7 +91,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id)
         {
-            var findUser = this.userManager.FindById(id);
+            var findUser = this.userService.FindById(id);
 
             if (findUser == null)
             {
