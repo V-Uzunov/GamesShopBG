@@ -1,7 +1,7 @@
 ﻿namespace GamesShopBG.Web.Controllers
 {
+    using GamesShopBG.Auth;
     using GamesShopBG.Data.Models;
-    using GamesShopBG.Services.Implementations.ShoppingCart;
     using GamesShopBG.Web.ViewModels.Account;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
@@ -14,50 +14,14 @@
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private UserManager _userManager;
+        private readonly ISignInService signInService;
+        private readonly IUserService userService;
 
-        public AccountController()
+        public AccountController(ISignInService signInService, IUserService userService)
         {
+            this.signInService = signInService;
+            this.userService = userService;
         }
-
-        public AccountController(UserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-        private void MigrateShoppingCart(string UserName)
-        {
-            // Associate shopping cart items with logged-in user
-            var cart = ShoppingCartService.GetCart(this.HttpContext);
-
-            cart.MigrateCart(UserName);
-            Session[ShoppingCartService.CartSessionKey] = UserName;
-        }
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
-
-        public UserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-        
 
         //
         // GET: /Account/Login
@@ -82,8 +46,7 @@
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
-            MigrateShoppingCart(model.Username);
+            var result = await this.signInService.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -105,7 +68,7 @@
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
-            if (!await SignInManager.HasBeenVerifiedAsync())
+            if (!await this.signInService.HasBeenVerifiedAsync())
             {
                 return View("Error");
             }
@@ -128,7 +91,7 @@
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await this.signInService.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -159,17 +122,17 @@
         {
             if (ModelState.IsValid)
             {
-                var user = new User() { UserName = model.Username, Name=model.Name, Email = model.Email, Birthdate=model.Birthdate };
-                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                var user = new User() { UserName = model.Username, Email = model.Email };
+                var result = await this.userService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    MigrateShoppingCart(model.Username);
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // string code = await this.userService.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    // await this.userService.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -189,7 +152,7 @@
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            var result = await this.userService.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
@@ -210,18 +173,18 @@
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await this.userService.FindByNameAsync(model.Email);
+                if (user == null || !(await this.userService.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                // string code = await this.userService.GeneratePasswordResetTokenAsync(user.Id);
                 // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                // await this.userService.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
@@ -256,13 +219,13 @@
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await this.userService.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await this.userService.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
@@ -295,12 +258,12 @@
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
-            var userId = await SignInManager.GetVerifiedUserIdAsync();
+            var userId = await this.signInService.GetVerifiedUserIdAsync();
             if (userId == null)
             {
                 return View("Error");
             }
-            var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
+            var userFactors = await this.userService.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
@@ -318,7 +281,7 @@
             }
 
             // Generate the token and send it
-            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            if (!await this.signInService.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return View("Error");
             }
@@ -337,7 +300,7 @@
             }
 
             // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            var result = await this.signInService.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -376,13 +339,13 @@
                     return View("ExternalLoginFailure");
                 }
                 var user = new User { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
+                var result = await this.userService.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await this.userService.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -415,16 +378,14 @@
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (this.userService != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    this.userService.Dispose();
                 }
 
-                if (_signInManager != null)
+                if (this.signInService != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    this.signInService.Dispose();
                 }
             }
 

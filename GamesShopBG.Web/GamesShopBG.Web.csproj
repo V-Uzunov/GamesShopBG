@@ -231,10 +231,10 @@
     <Compile Include="Areas\Moderator\Controllers\GamesController.cs" />
     <Compile Include="Areas\Moderator\ModeratorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -351,6 +351,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GamesShopBG.Auth\GamesShopBG.Auth.csproj">
+      <Project>{e814ea88-24ee-4547-981b-5ba97859649c}</Project>
+      <Name>GamesShopBG.Auth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GamesShopBG.Common\GamesShopBG.Common.csproj">
       <Project>{35964197-2281-45f3-988f-1c54fbf14a66}</Project>
       <Name>GamesShopBG.Common</Name>

@@ -5,7 +5,6 @@
     using GamesShopBG.Data;
     using GamesShopBG.Services.Interfaces.Games;
     using GamesShopBG.Services.Models.Games;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;

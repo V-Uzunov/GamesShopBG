@@ -83,7 +83,10 @@ namespace GamesShopBG.Web.App_Start
                 .To<GamesShopBGData>()
                 .InRequestScope();
 
+            kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
+            kernel.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<UserManager>());
             kernel
+
                .Bind<IAdminUserService>()
                .To<AdminUserService>()
                .InRequestScope();
