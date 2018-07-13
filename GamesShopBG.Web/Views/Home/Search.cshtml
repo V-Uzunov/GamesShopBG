@@ -1,14 +1,14 @@
 ﻿@model  HomeIndexGamesListingsViewModel
 
 @{
-    ViewBag.Title = $"Search";
+    ViewBag.Title = "Search";
 }
 
-<h2 class="text-default">Search Results For "@Model.SearchText"</h2>
+<h2 class="text-default">@GlobalResources.ViewHomeSearchSearchingResult "@Model.SearchText"</h2>
 
 @if (Model.Games.Any())
 {
-    <h3 class="text-default">Found Games</h3>
+    <h3 class="text-default">@GlobalResources.ViewHomeSearchFoundGames</h3>
 
     <div class="row">
         @Html.Partial("_GamesListingPartial", Model.Games)
@@ -16,5 +16,5 @@
 }
 else
 {
-    <h3 class="text-default">No games to show.</h3>
+    <h3 class="text-default">@GlobalResources.ViewHomeSearchNoGamesToShow</h3>
 }

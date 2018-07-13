@@ -4,6 +4,7 @@
     using GamesShopBG.Services.Interfaces.ShoppingCart;
     using GamesShopBG.Services.Models.Order;
     using GamesShopBG.Web.Infrastructure.Extensions;
+    using Resources;
     using System.Linq;
     using System.Web.Mvc;
     
@@ -23,7 +24,7 @@
             var cart = ShoppingCartService.GetCart(this.HttpContext);
             if (cart.GetCartItems().Count() == 0)
             {
-                TempData.AddErrorMessage("Your cart is empty, add some games first");
+                TempData.AddErrorMessage(GlobalResources.ControllerOrderCheckOutErrorText);
 
                 return this.RedirectToAction(
                 nameof(ShoppingCartController.Index),
@@ -41,7 +42,7 @@
             var cart = ShoppingCartService.GetCart(this.HttpContext);
             if (cart.GetCartItems().Count() == 0)
             {
-                TempData.AddErrorMessage("Your cart is empty, add some products first");
+                TempData.AddErrorMessage(GlobalResources.ControllerOrderCheckOutErrorText);
 
                 return this.RedirectToAction(
                 nameof(ShoppingCartController.Index),
@@ -56,7 +57,7 @@
 
             cart.CreateOrder(model);
 
-            TempData.AddSuccessMessage($"Order was created successful!");
+            TempData.AddSuccessMessage(GlobalResources.ControllerOrderCheckOutSuccsessText);
 
             return this.RedirectToAction(
                 nameof(HomeController.Index),

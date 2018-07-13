@@ -10,9 +10,9 @@
     <thead>
         <tr>
 
-            <th>Game</th>
-            <th class="text-right">Price</th>
-            <th class="text-right">Count</th>
+            <th>@GlobalResources.ViewShoppingCartIndexGame</th>
+            <th class="text-right">@GlobalResources.ViewShoppingCartIndexPrice</th>
+            <th class="text-right">@GlobalResources.ViewShoppingCartIndexCount</th>
         </tr>
     </thead>
     <tbody>
@@ -24,9 +24,7 @@
                 <td class="text-right" id="item-count-@line.Id">@line.Amount</td>
                 <td class="text-center">
                     <a href="#" class="RemoveLink"
-                       data-id="@line.Id">
-                        Remove
-                        from cart
+                       data-id="@line.Id">@GlobalResources.ViewShoppingCartIndexRemoveFromCart
                     </a>
                 </td>
             </tr>
@@ -49,7 +47,7 @@
 </custom:div>
 
 <div class="text-center">
-    @Html.ActionLink("Check out now!", "Checkout", "Order", new { area = "" }, new { @class = "btn btn-primary" })
+    @Html.ActionLink(GlobalResources.ViewShoppingCartIndexCheckOutNow, "Checkout", "Order", new { area = "" }, new { @class = "btn btn-primary" })
 </div>
 
 

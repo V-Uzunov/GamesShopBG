@@ -4,6 +4,7 @@
     using GamesShopBG.Services.Interfaces.Games;
     using GamesShopBG.Services.Interfaces.ShoppingCart;
     using GamesShopBG.Services.Models.ShoppingCart;
+    using Resources;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -65,7 +66,7 @@
             var results = new ShoppingCartRemoveServiceModel
             {
                 Message = Server.HtmlEncode(gameName) +
-                    " has been removed from your shopping cart.",
+                    GlobalResources.ControllerShoppingCartRemoveMessage,
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),
                 ItemCount = itemCount,

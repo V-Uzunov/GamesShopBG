@@ -39,6 +39,6 @@
             @Html.EditorFor(t => t.ReleaseDate, new { @class = "form-control" })
             @Html.ValidationMessageFor(t => t.ReleaseDate, "", new { @class="text-danger"})
         </div>
-        <button type="submit" class="btn btn-primary btn-edited">Save Game</button>
+        <button type="submit" class="btn btn-primary btn-edited">@GlobalResources.AreaModeratorViewPartialSaveGame</button>
     </form>
 </div>

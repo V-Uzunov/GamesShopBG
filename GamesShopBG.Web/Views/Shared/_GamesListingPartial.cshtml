@@ -12,13 +12,13 @@
                         @{
                             var subDescript = games.Description.Substring(0, DataConstants.GamesDescriptionMinLenght);
                         }
-                        <li class="list-group-item"><b>Description:</b> @subDescript...</li>
-                        <li class="list-group-item"><b>Price:</b> @games.Price.ToString("c")</li>
+                        <li class="list-group-item"><b>@GlobalResources.ViewHomeIndexPartialDescription:</b> @subDescript...</li>
+                        <li class="list-group-item"><b>@GlobalResources.ViewHomeIndexPartialPrice:</b> @games.Price.ToString("c")</li>
                     </ul>
                     <div class="card-footer">
-                        @Html.ActionLink("Details", "Details", "Games", new { area = "", id = games.Id}, new {@class="btn" })
+                        @Html.ActionLink(GlobalResources.ViewHomeIndexPartialDetails, "Details", "Games", new { area = "", id = games.Id}, new {@class="btn" })
 
-                        @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { area = "", id = games.Id}, new { @class="btn"})
+                        @Html.ActionLink(GlobalResources.ViewHomeIndexPartialAddToCart, "AddToCart", "ShoppingCart", new { area = "", id = games.Id}, new { @class="btn"})
                     </div>
                 </div>
             </div>

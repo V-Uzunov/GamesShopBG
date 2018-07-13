@@ -13,32 +13,32 @@
                         <h3 class="text-center">@ViewData["Title"]</h3>
                     </li>
                     <li class="list-group-item container-default">
-                        <b>Game Trailer:</b>
+                        <b>@GlobalResources.ViewGamesDetailsGameTrailer</b>
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@Model.VideoUrl" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </li>
                     <li class="list-group-item">
-                        <b>Size:</b> @Model.Size.ToString("f") GB
+                        <b>@GlobalResources.ViewGamesDetailsSize</b> @Model.Size.ToString("f") GB
                     </li>
                     <li class="list-group-item">
-                        <b>Price:</b> @Model.Price.ToString("c")
+                        <b>@GlobalResources.ViewGamesDetailsPrice</b> @Model.Price.ToString("c")
                     </li>
                     <li class="list-group-item">
-                        <b>Release Date:</b> @Model.ReleaseDate.ToShortDateString()
+                        <b>@GlobalResources.ViewGamesDetailsReleaseDate</b> @Model.ReleaseDate.ToShortDateString()
                     </li>
                     <li class="list-group-item">
-                        <b>Description:</b> @Model.Description
+                        <b>@GlobalResources.ViewGamesDetailsDescription</b> @Model.Description
                     </li>
                     <li class="list-group-item">
-                        @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { area = "", id = Model.Id }, new { @class = "btn" })
+                        @Html.ActionLink(GlobalResources.ViewHomeIndexPartialAddToCart, "AddToCart", "ShoppingCart", new { area = "", id = Model.Id }, new { @class = "btn" })
                     </li>
                 </ul>
                 @if (User.IsInRole(GlobalConstants.ModeratorRole))
                 {
                     <div class="text-right">
-                        @Html.ActionLink("Edit", "Edit", "Games", new { area=$"{GlobalConstants.ModeratorArea}", id=Model.Id}, new { @class="btn btn-warning"})
-                        @Html.ActionLink("Delete", "Delete", "Games", new {area = $"{GlobalConstants.ModeratorArea}", id=Model.Id }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink(GlobalResources.ViewGamesEdit, "Edit", "Games", new { area=$"{GlobalConstants.ModeratorArea}", id=Model.Id}, new { @class="btn btn-warning"})
+                        @Html.ActionLink(GlobalResources.ViewGameDelete, "Delete", "Games", new {area = $"{GlobalConstants.ModeratorArea}", id=Model.Id }, new { @class = "btn btn-danger" })
                     </div>
                 }
             </div>

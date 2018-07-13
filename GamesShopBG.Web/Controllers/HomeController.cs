@@ -4,7 +4,7 @@
     using GamesShopBG.Web.ViewModels.Home;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-
+    
     public class HomeController : Controller
     {
         private readonly IGameService games;

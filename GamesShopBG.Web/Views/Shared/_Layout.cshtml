@@ -20,15 +20,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" id="editNav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, "")</li>
+                    <li>@Html.ActionLink(GlobalResources.ViewLayoutHome, "Index", "Home", new { area = "" }, "")</li>
                     <li>@{Html.RenderAction("CartSummary", "ShoppingCart", new { area = "" });}</li>
                     @if (User.IsInRole(GlobalConstants.AdminRole))
                     {
-                        <li>@Html.ActionLink("Admin", "Index", new { controller = "Users", area = "Admin" })</li>
+                        <li>@Html.ActionLink(GlobalResources.ViewLayoutAdmin, "Index", new { controller = "Users", area = "Admin" })</li>
                     }
                     @if (User.IsInRole(GlobalConstants.ModeratorRole))
                     {
-                        <li>@Html.ActionLink("Add Games", "Create", new { controller = "Games", area = "Moderator" })</li>
+                        <li>@Html.ActionLink(GlobalResources.ViewLayoutAddGame, "Create", new { controller = "Games", area = "Moderator" })</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

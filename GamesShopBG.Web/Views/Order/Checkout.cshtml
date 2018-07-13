@@ -8,7 +8,7 @@
 {
     @Html.AntiForgeryToken();
     <h2>@ViewBag.Title</h2>
-    <h4>You're just one step away to get your games.</h4>
+    <h4>@GlobalResources.ViewGameCheckOutText</h4>
     <div class="form-group">
         @Html.LabelFor(i => i.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-5">
@@ -67,7 +67,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
-            <input type="submit" class="btn" value="Complete order" />
+            <input type="submit" class="btn" value=@GlobalResources.ViewGameCheckOutSubmitText />
         </div>
     </div>
 
