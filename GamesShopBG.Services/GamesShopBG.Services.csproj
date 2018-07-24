@@ -136,6 +136,10 @@
       <Project>{35964197-2281-45f3-988f-1c54fbf14a66}</Project>
       <Name>GamesShopBG.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GamesShopBG.Data.Common\GamesShopBG.Data.Common.csproj">
+      <Project>{3e762e13-2aca-4314-8288-aede916b6acf}</Project>
+      <Name>GamesShopBG.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GamesShopBG.Data\GamesShopBG.Data.csproj">
       <Project>{bff3e01d-81e3-4902-8fce-655db238d97a}</Project>
       <Name>GamesShopBG.Data</Name>

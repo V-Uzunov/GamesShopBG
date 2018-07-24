@@ -1,45 +1,47 @@
-﻿namespace GamesShopBG.Data.Repositories
+﻿namespace GamesShopBG.Data.Common.Repositories
 {
     using System.Data.Entity;
     using System.Linq;
 
-    public class Repository<T> : IRepository<T> where T : class
+    public class GenericRepository<T> : IRepository<T>
+        where T : class
     {
-        private DbContext context;
+        private readonly DbContext context;
         private IDbSet<T> set;
-        public Repository(DbContext context)
+
+        public GenericRepository(DbContext context)
         {
             this.context = context;
             this.set = context.Set<T>();
         }
 
-        public IQueryable<T> All()
+        public virtual IQueryable<T> All()
         {
             return this.set;
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             ChangeState(entity, EntityState.Added);
         }
 
-        public T Find(object id)
+        public virtual T Find(object id)
         {
             return this.set.Find(id);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             ChangeState(entity, EntityState.Modified);
         }
 
-        public T Delete(T entity)
+        public virtual T Delete(T entity)
         {
             ChangeState(entity, EntityState.Deleted);
             return entity;
         }
 
-        public T Delete(object id)
+        public virtual T Delete(object id)
         {
             T entity = this.Find(id);
             this.Delete(entity);

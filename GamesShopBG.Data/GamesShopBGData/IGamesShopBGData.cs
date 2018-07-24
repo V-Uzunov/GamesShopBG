@@ -1,12 +1,12 @@
-﻿namespace GamesShopBG.Data
+﻿namespace GamesShopBG.Data.GamesShopBGData
 {
+    using GamesShopBG.Data.Common.Repositories;
     using GamesShopBG.Data.Models;
-    using GamesShopBG.Data.Repositories;
     using Microsoft.AspNet.Identity.EntityFramework;
 
     public interface IGamesShopBGData
     {
-        IRepository<User> Users
+        IDeletableEntityRepository<User> Users
         {
             get;
         }
@@ -16,7 +16,7 @@
             get;
         }
 
-        IRepository<Game> Games
+        IDeletableEntityRepository<Game> Games
         {
             get;
         }

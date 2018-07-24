@@ -1,7 +1,8 @@
-﻿namespace GamesShopBG.Data
+﻿namespace GamesShopBG.Data.GamesShopBGData
 {
+    using GamesShopBG.Data.Common.Models;
+    using GamesShopBG.Data.Common.Repositories;
     using GamesShopBG.Data.Models;
-    using GamesShopBG.Data.Repositories;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
@@ -18,11 +19,11 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public IRepository<User> Users
+        public IDeletableEntityRepository<User> Users
         {
             get
             {
-                return this.GetRepository<User>();
+                return this.GetDeletableEntityRepository<User>();
             }
         }
         
@@ -34,11 +35,11 @@
             }
         }
 
-        public IRepository<Game> Games
+        public IDeletableEntityRepository<Game> Games
         {
             get
             {
-                return this.GetRepository<Game>();
+                return this.GetDeletableEntityRepository<Game>();
             }
         }
 
@@ -66,17 +67,28 @@
             }
         }
 
-
-        private IRepository<T> GetRepository<T>() where T : class
+        private IRepository<T> GetRepository<T>()
+            where T : class
         {
-            var typeOfRepository = typeof(T);
-            if (!this.repositories.ContainsKey(typeOfRepository))
+            if (!this.repositories.ContainsKey(typeof(T)))
             {
-                var newRepository = Activator.CreateInstance(typeof(Repository<T>), context);
-                this.repositories.Add(typeOfRepository, newRepository);
+                var type = typeof(GenericRepository<T>);
+                this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.context));
             }
 
-            return (IRepository<T>) this.repositories[typeOfRepository];
+            return (IRepository<T>)this.repositories[typeof(T)];
+        }
+
+        private IDeletableEntityRepository<T> GetDeletableEntityRepository<T>()
+            where T : class, IDeletableEntity, new()
+        {
+            if (!this.repositories.ContainsKey(typeof(T)))
+            {
+                var type = typeof(DeletableEntityRepository<T>);
+                this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.context));
+            }
+
+            return (IDeletableEntityRepository<T>)this.repositories[typeof(T)];
         }
 
         public int SaveChanges()

@@ -1,4 +1,4 @@
-﻿namespace GamesShopBG.Data.Repositories
+﻿namespace GamesShopBG.Data.Common.Repositories
 {
     using System.Linq;
 

@@ -1,10 +1,12 @@
 ﻿namespace GamesShopBG.Data.Models
 {
+    using GamesShopBG.Data.Common.Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Game
+    public class Game : IAuditInfo, IDeletableEntity
     {
         [Key]
         public int Id { get; set; }
@@ -37,6 +39,15 @@
         [DataType(DataType.Date)]
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
+
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
 
         public virtual ICollection<Order> Order { get; set; } = new List<Order>();
     }
