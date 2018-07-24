@@ -1,8 +1,8 @@
 ﻿namespace GamesShopBG.Data
 {
-    using GamesShopBG.Data.Common.Models;
-    using GamesShopBG.Data.Common.Repositories;
     using GamesShopBG.Data.Models;
+    using GamesShopBG.Data.Repositories;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -26,11 +26,11 @@
             }
         }
         
-        public IRepository<Role> Roles
+        public IRepository<IdentityRole> Roles
         {
             get
             {
-                return this.GetRepository<Role>();
+                return this.GetRepository<IdentityRole>();
             }
         }
 
@@ -49,7 +49,15 @@
                 return this.GetRepository<Order>();
             }
         }
-        
+
+        public IRepository<OrderDetail> OrderDetails
+        {
+            get
+            {
+                return this.GetRepository<OrderDetail>();
+            }
+        }
+
         public IRepository<ShoppingCartItem> ShoppingCartItems
         {
             get
@@ -59,7 +67,7 @@
         }
 
 
-        private IRepository<T> GetRepository<T>() where T : class, IAuditInfo, IDeletableEntity
+        private IRepository<T> GetRepository<T>() where T : class
         {
             var typeOfRepository = typeof(T);
             if (!this.repositories.ContainsKey(typeOfRepository))

@@ -8,6 +8,7 @@
     using GamesShopBG.Services.Models.Order;
     using GamesShopBG.Services.Models.ShoppingCart;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -58,7 +59,8 @@
                     GameId = game.Id,
                     CartId = this.ShoppingCartId,
                     Title = game.Title,
-                    Amount = 1
+                    Amount = 1,
+                    DateCreated = DateTime.Now
                 };
                 this.data.ShoppingCartItems.Add(cartItem);
             }
@@ -158,7 +160,8 @@
                 FirstName = order.FirstName,
                 LastName = order.LastName,
                 PhoneNumber = order.PhoneNumber,
-                ZipCode = order.ZipCode
+                ZipCode = order.ZipCode,
+                OrderDate = DateTime.UtcNow
             };
             // Iterate over the items in the cart, adding the order details for each
             foreach (var item in cartItems)

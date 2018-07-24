@@ -81,7 +81,7 @@
   <ItemGroup>
     <Compile Include="DataConstants.cs" />
     <Compile Include="GamesShopBGDbContext.cs" />
-    <Compile Include="GamesShopBGData\IGamesShopBGData.cs" />
+    <Compile Include="IGamesShopBGData.cs" />
     <Compile Include="Migrations\201805031051066_init.cs" />
     <Compile Include="Migrations\201805031051066_init.Designer.cs">
       <DependentUpon>201805031051066_init.cs</DependentUpon>
@@ -94,19 +94,16 @@
     <Compile Include="Migrations\201805090845383_EditOrdersColumn.Designer.cs">
       <DependentUpon>201805090845383_EditOrdersColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807241000379_Add-AuditInfo-DeletableEntity.cs" />
-    <Compile Include="Migrations\201807241000379_Add-AuditInfo-DeletableEntity.Designer.cs">
-      <DependentUpon>201807241000379_Add-AuditInfo-DeletableEntity.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
-    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\ShoppingCartItem.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GamesShopBGData\GamesShopBGData.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="GamesShopBGData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -119,10 +116,6 @@
       <Project>{35964197-2281-45F3-988F-1C54FBF14A66}</Project>
       <Name>GamesShopBG.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GamesShopBG.Data.Common\GamesShopBG.Data.Common.csproj">
-      <Project>{a17b8d43-256b-47b2-8a0a-9ce0d2713657}</Project>
-      <Name>GamesShopBG.Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805031051066_init.resx">
@@ -134,12 +127,6 @@
     <EmbeddedResource Include="Migrations\201805090845383_EditOrdersColumn.resx">
       <DependentUpon>201805090845383_EditOrdersColumn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807241000379_Add-AuditInfo-DeletableEntity.resx">
-      <DependentUpon>201807241000379_Add-AuditInfo-DeletableEntity.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

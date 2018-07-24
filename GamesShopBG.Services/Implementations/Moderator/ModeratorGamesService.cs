@@ -52,7 +52,8 @@
             gameExist.ThumbnailUrl = model.ThumbnailUrl;
             gameExist.Description = model.Description;
             gameExist.ReleaseDate = model.ReleaseDate;
-            
+
+            this.data.Games.Update(gameExist);
             this.data.Games.SaveChanges();
         }
 

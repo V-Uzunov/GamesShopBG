@@ -1,7 +1,8 @@
 ﻿namespace GamesShopBG.Data
 {
-    using GamesShopBG.Data.Common.Repositories;
     using GamesShopBG.Data.Models;
+    using GamesShopBG.Data.Repositories;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public interface IGamesShopBGData
     {
@@ -10,7 +11,7 @@
             get;
         }
 
-        IRepository<Role> Roles
+        IRepository<IdentityRole> Roles
         {
             get;
         }
@@ -21,6 +22,11 @@
         }
 
         IRepository<Order> Orders
+        {
+            get;
+        }
+
+        IRepository<OrderDetail> OrderDetails
         {
             get;
         }

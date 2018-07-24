@@ -1,22 +1,15 @@
 ﻿namespace GamesShopBG.Data.Models
 {
-    using GamesShopBG.Data.Common.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    public class User : IdentityUser, IAuditInfo, IDeletableEntity
+    public class User : IdentityUser
     {
-        public User()
-        {
-            this.CreatedOn = DateTime.UtcNow;
-        }
-
         [Required]
         [MinLength(DataConstants.UserMinLenght)]
         [MaxLength(DataConstants.UserMaxLenght)]
@@ -25,16 +18,6 @@
         [Required]
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
-
-        [Index]
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
-
 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
