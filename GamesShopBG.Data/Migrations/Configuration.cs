@@ -49,8 +49,7 @@ namespace GamesShopBG.Data.Migrations
                 {
                     Email = adminEmail,
                     UserName = adminName,
-                    Name = adminName,
-                    Birthdate = DateTime.UtcNow
+                    Name = adminName
                 };
 
                 this.userManager.Create(adminUser, "admin12");

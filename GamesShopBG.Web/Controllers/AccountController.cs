@@ -124,13 +124,7 @@
         {
             if (ModelState.IsValid)
             {
-                
-                try
-                {
-                    // Your code...
-                    // Could also be before try if you know the exception occurs in SaveChanges
-                    var user = new User() { UserName = model.Username, Email = model.Email };
-
+                    var user = new User() { Name = model.Name, UserName = model.Username, Email = model.Email };
                     var result = await this.userService.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -145,23 +139,7 @@
                         return RedirectToAction("Index", "Home");
                     }
                     AddErrors(result);
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage);
-                        }
-                    }
-                    throw;
-                }
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }

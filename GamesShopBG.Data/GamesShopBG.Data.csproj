@@ -90,6 +90,14 @@
     <Compile Include="Migrations\201807241346040_Edit-Users.Designer.cs">
       <DependentUpon>201807241346040_Edit-Users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807241427084_Edit-Users-Date.cs" />
+    <Compile Include="Migrations\201807241427084_Edit-Users-Date.Designer.cs">
+      <DependentUpon>201807241427084_Edit-Users-Date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807241431474_Edit-User.cs" />
+    <Compile Include="Migrations\201807241431474_Edit-User.Designer.cs">
+      <DependentUpon>201807241431474_Edit-User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Order.cs" />
@@ -121,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807241346040_Edit-Users.resx">
       <DependentUpon>201807241346040_Edit-Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807241427084_Edit-Users-Date.resx">
+      <DependentUpon>201807241427084_Edit-Users-Date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807241431474_Edit-User.resx">
+      <DependentUpon>201807241431474_Edit-User.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
