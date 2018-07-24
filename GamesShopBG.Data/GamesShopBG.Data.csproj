@@ -114,6 +114,10 @@
       <Project>{35964197-2281-45F3-988F-1C54FBF14A66}</Project>
       <Name>GamesShopBG.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GamesShopBG.Data.Common\GamesShopBG.Data.Common.csproj">
+      <Project>{a17b8d43-256b-47b2-8a0a-9ce0d2713657}</Project>
+      <Name>GamesShopBG.Data.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805031051066_init.resx">
