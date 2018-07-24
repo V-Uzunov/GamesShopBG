@@ -17,7 +17,7 @@
 
         public virtual IQueryable<T> All()
         {
-            return this.set;
+            return this.set.AsQueryable();
         }
 
         public virtual void Add(T entity)
@@ -35,17 +35,15 @@
             ChangeState(entity, EntityState.Modified);
         }
 
-        public virtual T Delete(T entity)
+        public virtual void Delete(T entity)
         {
             ChangeState(entity, EntityState.Deleted);
-            return entity;
         }
 
-        public virtual T Delete(object id)
+        public virtual void Delete(object id)
         {
             T entity = this.Find(id);
             this.Delete(entity);
-            return entity;
         }
 
         public int SaveChanges()

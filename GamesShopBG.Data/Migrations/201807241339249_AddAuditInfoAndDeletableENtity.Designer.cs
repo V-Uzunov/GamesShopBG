@@ -7,18 +7,18 @@ namespace GamesShopBG.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class EditOrdersColumn : IMigrationMetadata
+    public sealed partial class AddAuditInfoAndDeletableENtity : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EditOrdersColumn));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddAuditInfoAndDeletableENtity));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805090845383_EditOrdersColumn"; }
+            get { return "201807241339249_AddAuditInfoAndDeletableENtity"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

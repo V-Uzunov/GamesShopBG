@@ -8,65 +8,47 @@
     public class DeletableEntityRepository<T> : GenericRepository<T>, IDeletableEntityRepository<T>
         where T : class, IDeletableEntity, new()
     {
-        private IDbSet<T> set;
-
         public DeletableEntityRepository(DbContext context)
             : base(context)
         {
-            this.set = context.Set<T>();
         }
 
         public override IQueryable<T> All()
         {
-            return this.set.Where(x => !x.IsDeleted);
+            return base.All().Where(x => !x.IsDeleted);
         }
 
         public IQueryable<T> AllWithDeleted()
         {
-            return this.set;
+            return base.All();
         }
 
-        public override void Add(T entity)
-        {
-            this.set.Add(entity);
-        }
-
-        public override T Find(object id)
-        {
-            var item = this.set.Find(id);
-
-            if (item.IsDeleted)
-            {
-                return null;
-            }
-
-            return item;
-        }
-
-        public override T Delete(T entity)
+        public override void Delete(T entity)
         {
             entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.UtcNow;
-            return entity;
+            entity.DeletedOn = DateTime.Now;
+
+            base.Update(entity);
         }
 
-        public override T Delete(object id)
+        public override void Delete(object id)
         {
-            T entity = this.Find(id);
+            T entity = base.Find(id);
             entity.IsDeleted = true;
             entity.DeletedOn = DateTime.UtcNow;
-            return entity;
+
+            this.Update(entity);
         }
 
         public void HardDelete(T entity)
         {
-            this.set.Remove(entity);
+            base.Delete(entity);
         }
 
         public void HardDelete(object id)
         {
             T entity = this.Find(id);
-            this.set.Remove(entity);
+            base.Delete(entity);
         }
     }
 }

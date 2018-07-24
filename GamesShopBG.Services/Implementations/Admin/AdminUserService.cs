@@ -1,7 +1,7 @@
 ﻿namespace GamesShopBG.Services.Implementations.Admin
 {
     using AutoMapper.QueryableExtensions;
-    using GamesShopBG.Data;
+    using GamesShopBG.Data.GamesShopBGData;
     using GamesShopBG.Services.Interfaces.Admin;
     using GamesShopBG.Services.Models.Admin;
     using Microsoft.AspNet.Identity.EntityFramework;

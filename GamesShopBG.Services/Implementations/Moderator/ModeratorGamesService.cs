@@ -1,11 +1,10 @@
 ﻿namespace GamesShopBG.Services.Implementations.Moderator
 {
     using AutoMapper.QueryableExtensions;
-    using GamesShopBG.Data;
+    using GamesShopBG.Data.GamesShopBGData;
     using GamesShopBG.Data.Models;
     using GamesShopBG.Services.Interfaces.Moderator;
     using GamesShopBG.Services.Models.Moderator;
-    using System;
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;

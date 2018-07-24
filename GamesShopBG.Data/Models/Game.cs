@@ -43,10 +43,13 @@
         [Index]
         public bool IsDeleted { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime? DeletedOn { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime? ModifiedOn { get; set; }
 
         public virtual ICollection<Order> Order { get; set; } = new List<Order>();

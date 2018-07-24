@@ -82,17 +82,13 @@
     <Compile Include="DataConstants.cs" />
     <Compile Include="GamesShopBGDbContext.cs" />
     <Compile Include="GamesShopBGData\IGamesShopBGData.cs" />
-    <Compile Include="Migrations\201805031051066_init.cs" />
-    <Compile Include="Migrations\201805031051066_init.Designer.cs">
-      <DependentUpon>201805031051066_init.cs</DependentUpon>
+    <Compile Include="Migrations\201807241339249_AddAuditInfoAndDeletableENtity.cs" />
+    <Compile Include="Migrations\201807241339249_AddAuditInfoAndDeletableENtity.Designer.cs">
+      <DependentUpon>201807241339249_AddAuditInfoAndDeletableENtity.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805041042546_EditDbColumn.cs" />
-    <Compile Include="Migrations\201805041042546_EditDbColumn.Designer.cs">
-      <DependentUpon>201805041042546_EditDbColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805090845383_EditOrdersColumn.cs" />
-    <Compile Include="Migrations\201805090845383_EditOrdersColumn.Designer.cs">
-      <DependentUpon>201805090845383_EditOrdersColumn.cs</DependentUpon>
+    <Compile Include="Migrations\201807241346040_Edit-Users.cs" />
+    <Compile Include="Migrations\201807241346040_Edit-Users.Designer.cs">
+      <DependentUpon>201807241346040_Edit-Users.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
@@ -120,14 +116,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805031051066_init.resx">
-      <DependentUpon>201805031051066_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807241339249_AddAuditInfoAndDeletableENtity.resx">
+      <DependentUpon>201807241339249_AddAuditInfoAndDeletableENtity.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805041042546_EditDbColumn.resx">
-      <DependentUpon>201805041042546_EditDbColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805090845383_EditOrdersColumn.resx">
-      <DependentUpon>201805090845383_EditOrdersColumn.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807241346040_Edit-Users.resx">
+      <DependentUpon>201807241346040_Edit-Users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

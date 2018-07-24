@@ -23,6 +23,7 @@ namespace GamesShopBG.Web.App_Start
     using System.Data.Entity;
     using Microsoft.AspNet.Identity.Owin;
     using GamesShopBG.Auth;
+    using GamesShopBG.Data.GamesShopBGData;
 
     public class NinjectConfig
     {

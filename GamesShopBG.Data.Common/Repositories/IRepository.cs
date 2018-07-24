@@ -12,9 +12,9 @@
 
         void Update(T entity);
 
-        T Delete(T entity);
+        void Delete(T entity);
 
-        T Delete(object id);
+        void Delete(object id);
 
         int SaveChanges();
     }

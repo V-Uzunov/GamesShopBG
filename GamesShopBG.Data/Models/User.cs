@@ -10,13 +10,8 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    public class User : IdentityUser, IAuditInfo, IDeletableEntity
+    public class User : IdentityUser
     {
-        public User()
-        {
-            this.CreatedOn = DateTime.UtcNow;
-        }
-
         [Required]
         [MinLength(DataConstants.UserMinLenght)]
         [MaxLength(DataConstants.UserMaxLenght)]
@@ -25,16 +20,7 @@
         [Required]
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
-
-        [Index]
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
-
+        
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

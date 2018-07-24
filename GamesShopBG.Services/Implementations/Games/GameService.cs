@@ -2,7 +2,7 @@
 {
     using AutoMapper.QueryableExtensions;
     using GamesShopBG.Common;
-    using GamesShopBG.Data;
+    using GamesShopBG.Data.GamesShopBGData;
     using GamesShopBG.Services.Interfaces.Games;
     using GamesShopBG.Services.Models.Games;
     using System.Data.Entity;
