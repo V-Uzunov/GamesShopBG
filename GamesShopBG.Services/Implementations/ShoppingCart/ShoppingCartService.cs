@@ -1,5 +1,6 @@
 ﻿namespace GamesShopBG.Services.Implementations.ShoppingCart
 {
+    using AutoMapper.QueryableExtensions;
     using GamesShopBG.Data;
     using GamesShopBG.Data.Models;
     using GamesShopBG.Services.Interfaces.ShoppingCart;
@@ -9,6 +10,7 @@
     using System;
     using System.Linq;
     using System.Web;
+    using System.Web.Mvc;
 
     public class ShoppingCartService :  IShoppingCartService
     {

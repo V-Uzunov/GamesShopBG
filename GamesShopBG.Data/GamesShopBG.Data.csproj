@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201805090845383_EditOrdersColumn.Designer.cs">
       <DependentUpon>201805090845383_EditOrdersColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807241000379_Add-AuditInfo-DeletableEntity.cs" />
+    <Compile Include="Migrations\201807241000379_Add-AuditInfo-DeletableEntity.Designer.cs">
+      <DependentUpon>201807241000379_Add-AuditInfo-DeletableEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Order.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805090845383_EditOrdersColumn.resx">
       <DependentUpon>201805090845383_EditOrdersColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807241000379_Add-AuditInfo-DeletableEntity.resx">
+      <DependentUpon>201807241000379_Add-AuditInfo-DeletableEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
