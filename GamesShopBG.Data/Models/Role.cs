@@ -1,25 +1,16 @@
 ﻿namespace GamesShopBG.Data.Models
 {
     using GamesShopBG.Data.Common.Models;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class ShoppingCartItem : IAuditInfo, IDeletableEntity
+    public class Role : IdentityRole, IAuditInfo, IDeletableEntity
     {
-        public ShoppingCartItem()
+        public Role()
         {
             this.CreatedOn = DateTime.UtcNow;
         }
-
-        [Key]
-        public int Id { get; set; }
-
-        public string CartId { get; set; }
-        public int GameId { get; set; }
-        public string Title { get; set; }
-        public int Amount { get; set; }
-        public virtual Game Game { get; set; }
 
         [Index]
         public bool IsDeleted { get; set; }

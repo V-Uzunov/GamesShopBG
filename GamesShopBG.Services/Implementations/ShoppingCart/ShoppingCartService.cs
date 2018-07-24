@@ -1,6 +1,5 @@
 ﻿namespace GamesShopBG.Services.Implementations.ShoppingCart
 {
-    using AutoMapper.QueryableExtensions;
     using GamesShopBG.Data;
     using GamesShopBG.Data.Models;
     using GamesShopBG.Services.Interfaces.ShoppingCart;
@@ -8,10 +7,8 @@
     using GamesShopBG.Services.Models.Order;
     using GamesShopBG.Services.Models.ShoppingCart;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-    using System.Web.Mvc;
 
     public class ShoppingCartService :  IShoppingCartService
     {
@@ -59,8 +56,7 @@
                     GameId = game.Id,
                     CartId = this.ShoppingCartId,
                     Title = game.Title,
-                    Amount = 1,
-                    DateCreated = DateTime.Now
+                    Amount = 1
                 };
                 this.data.ShoppingCartItems.Add(cartItem);
             }
@@ -160,8 +156,7 @@
                 FirstName = order.FirstName,
                 LastName = order.LastName,
                 PhoneNumber = order.PhoneNumber,
-                ZipCode = order.ZipCode,
-                OrderDate = DateTime.UtcNow
+                ZipCode = order.ZipCode
             };
             // Iterate over the items in the cart, adding the order details for each
             foreach (var item in cartItems)
