@@ -43,7 +43,7 @@
         //GET: /Moderator/Games/Edit/{id}
         public async Task<ActionResult> Edit(int id)
         {
-            var game =await this.games.FindByIdAsync(id);
+            var game = await this.games.FindByIdAsync(id);
 
             if (game == null)
             {

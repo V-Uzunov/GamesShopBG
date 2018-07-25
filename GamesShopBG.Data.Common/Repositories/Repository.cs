@@ -3,13 +3,13 @@
     using System.Data.Entity;
     using System.Linq;
 
-    public class GenericRepository<T> : IRepository<T>
+    public class Repository<T> : IRepository<T>
         where T : class
     {
         private readonly DbContext context;
         private IDbSet<T> set;
 
-        public GenericRepository(DbContext context)
+        public Repository(DbContext context)
         {
             this.context = context;
             this.set = context.Set<T>();

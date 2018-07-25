@@ -1,12 +1,11 @@
 ﻿namespace GamesShopBG.Web.Areas.Admin.Controllers
 {
     using GamesShopBG.Auth;
-    using GamesShopBG.Data;
     using GamesShopBG.Services.Interfaces.Admin;
     using GamesShopBG.Web.Areas.Admin.Models;
     using GamesShopBG.Web.Infrastructure.Extensions;
-    using Microsoft.AspNet.Identity;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
 
     public class UsersController : BaseAdminController
@@ -44,7 +43,7 @@
         //POST: /Admin/Users/AddToRole
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddToRole(AddUserToRoleFormModel model)
+        public async Task<ActionResult> AddToRole(AddUserToRoleFormModel model)
         {
             var user = this.userService.FindById(model.UserId);
             var role = this.users.GetRoles(model.Role);
@@ -61,7 +60,7 @@
                 return RedirectToAction(nameof(Index));
             }
 
-            this.userService.AddToRolesAsync(user.Id, role.Name);
+            await this.userService.AddToRoleAsync(user.Id, role.Name);
 
             TempData.AddSuccessMessage($"User {user.UserName} successfully added to the {role.Name} role.");
             return RedirectToAction(nameof(Index));

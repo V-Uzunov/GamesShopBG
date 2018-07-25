@@ -19,7 +19,7 @@
             => this.View(new HomeIndexGamesListingsViewModel
             {
                 Games = this.games.GetAllGames(page),
-                TotalGames =await this.games.GetTotalAsync(),
+                TotalGames = await this.games.GetTotalAsync(),
                 CurrentPage = page
             });
 

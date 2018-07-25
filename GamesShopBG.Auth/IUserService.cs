@@ -52,5 +52,7 @@
         User FindById(string userId);
 
         Task<IdentityResult> AddToRolesAsync(string userId, params string[] roles);
+
+        Task<IdentityResult> AddToRoleAsync(string userId, string role);
     }
 }

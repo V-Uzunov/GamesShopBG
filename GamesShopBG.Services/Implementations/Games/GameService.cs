@@ -39,7 +39,7 @@
                          .FirstOrDefaultAsync();
 
         public IQueryable<GameListingServiceModel> GetAllGames(int page = 1)
-            =>  this.data
+            => this.data
                    .Games
                    .All()
                    .OrderByDescending(a => a.Id)
@@ -52,7 +52,7 @@
                    .Games
                    .All()
                    .ProjectTo<GamesCartServiceModel>()
-                   .FirstOrDefault(g=> g.Id == gameId);
+                   .FirstOrDefault(g => g.Id == gameId);
 
         public async Task<int> GetTotalAsync()
             => await this.data

@@ -5,7 +5,7 @@
     using System.Linq;
     using GamesShopBG.Data.Common.Models;
 
-    public class DeletableEntityRepository<T> : GenericRepository<T>, IDeletableEntityRepository<T>
+    public class DeletableEntityRepository<T> : Repository<T>, IDeletableEntityRepository<T>
         where T : class, IDeletableEntity, new()
     {
         public DeletableEntityRepository(DbContext context)

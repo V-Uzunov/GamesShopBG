@@ -40,7 +40,6 @@ namespace GamesShopBG.Data.Migrations
             }
             var adminName = GlobalConstants.AdminRole;
             var adminEmail = "admin@mysite.com";
-
             var adminUser =  this.userManager.FindByEmail(adminEmail);
 
             if (adminUser == null)

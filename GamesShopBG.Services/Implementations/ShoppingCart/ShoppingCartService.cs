@@ -8,7 +8,6 @@
     using GamesShopBG.Services.Models.Order;
     using GamesShopBG.Services.Models.ShoppingCart;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -47,7 +46,7 @@
         {
             // Get the matching cart and album instances
             var cartItem = this.data.ShoppingCartItems.SingleOrDefault(
-                c => c.CartId == ShoppingCartId
+                c => c.CartId == this.ShoppingCartId
                 && c.GameId == game.Id);
 
             if (cartItem == null)
@@ -129,7 +128,7 @@
             int? count = this.data
                 .ShoppingCartItems
                 .Where(c => c.CartId == this.ShoppingCartId)
-                .Select(c=> (int?)c.Amount)
+                .Select(c => (int?)c.Amount)
                 .Sum();
             // Return 0 if all entries are null
             return count ?? 0;
@@ -142,7 +141,7 @@
             decimal? total = this.data
                 .ShoppingCartItems
                 .Where(c => c.CartId == this.ShoppingCartId)
-                .Select(c=> (int?)c.Amount * c.Game.Price)
+                .Select(c => (int?)c.Amount * c.Game.Price)
                 .Sum();
             return total ?? decimal.Zero;
         }
@@ -150,7 +149,7 @@
         {
             decimal orderTotal = 0;
 
-            var cartItems = GetCartItems();
+            var cartItems = this.GetCartItems();
             var orderData = new Order
             {
                 Id = order.Id,
@@ -177,7 +176,6 @@
 
                 // Set the order total of the shopping cart
                 orderTotal += (item.Amount * item.Game.Price);
-
                 orderData.OrderDetails.Add(orderDetail);
                 this.data.OrderDetails.Add(orderDetail);
             }
@@ -189,7 +187,7 @@
             this.data.Orders.Add(orderData);
 
             // Empty the shopping cart
-            EmptyCart();
+            this.EmptyCart();
         }
 
         // We're using HttpContextBase to allow access to cookies.
@@ -218,7 +216,7 @@
         public void MigrateCart(string userName)
         {
             var shoppingCart = this.data.ShoppingCartItems.Where(
-                c => c.CartId == ShoppingCartId);
+                c => c.CartId == this.ShoppingCartId);
 
             foreach (var item in shoppingCart)
             {
