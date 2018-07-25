@@ -72,7 +72,7 @@
         {
             if (!this.repositories.ContainsKey(typeof(T)))
             {
-                var type = typeof(GenericRepository<T>);
+                var type = typeof(Repository<T>);
                 this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.context));
             }
 
