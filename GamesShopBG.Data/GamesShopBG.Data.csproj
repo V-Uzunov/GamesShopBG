@@ -82,22 +82,6 @@
     <Compile Include="DataConstants.cs" />
     <Compile Include="GamesShopBGDbContext.cs" />
     <Compile Include="GamesShopBGData\IGamesShopBGData.cs" />
-    <Compile Include="Migrations\201807241339249_AddAuditInfoAndDeletableENtity.cs" />
-    <Compile Include="Migrations\201807241339249_AddAuditInfoAndDeletableENtity.Designer.cs">
-      <DependentUpon>201807241339249_AddAuditInfoAndDeletableENtity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807241346040_Edit-Users.cs" />
-    <Compile Include="Migrations\201807241346040_Edit-Users.Designer.cs">
-      <DependentUpon>201807241346040_Edit-Users.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807241427084_Edit-Users-Date.cs" />
-    <Compile Include="Migrations\201807241427084_Edit-Users-Date.Designer.cs">
-      <DependentUpon>201807241427084_Edit-Users-Date.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807241431474_Edit-User.cs" />
-    <Compile Include="Migrations\201807241431474_Edit-User.Designer.cs">
-      <DependentUpon>201807241431474_Edit-User.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Order.cs" />
@@ -122,20 +106,6 @@
       <Project>{3e762e13-2aca-4314-8288-aede916b6acf}</Project>
       <Name>GamesShopBG.Data.Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807241339249_AddAuditInfoAndDeletableENtity.resx">
-      <DependentUpon>201807241339249_AddAuditInfoAndDeletableENtity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807241346040_Edit-Users.resx">
-      <DependentUpon>201807241346040_Edit-Users.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807241427084_Edit-Users-Date.resx">
-      <DependentUpon>201807241427084_Edit-Users-Date.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807241431474_Edit-User.resx">
-      <DependentUpon>201807241431474_Edit-User.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
