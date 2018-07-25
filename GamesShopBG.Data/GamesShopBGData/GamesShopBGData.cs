@@ -19,11 +19,11 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public IRepository<User> Users
+        public IDeletableEntityRepository<User> Users
         {
             get
             {
-                return this.GetRepository<User>();
+                return this.GetDeletableEntityRepository<User>();
             }
         }
         

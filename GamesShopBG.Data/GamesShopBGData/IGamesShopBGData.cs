@@ -6,7 +6,7 @@
 
     public interface IGamesShopBGData
     {
-        IRepository<User> Users
+        IDeletableEntityRepository<User> Users
         {
             get;
         }
