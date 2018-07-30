@@ -1,10 +1,10 @@
 ﻿namespace GamesShopBG.Web.Controllers
 {
     using GamesShopBG.Services.Interfaces.Games;
-    using GamesShopBG.Web.ViewModels.Home;
+    using GamesShopBG.Services.Models.Games;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    
+
     public class HomeController : Controller
     {
         private readonly IGameService games;
@@ -24,11 +24,11 @@
             });
 
         //GET: /Home/Search/
-        public ActionResult Search(HomeIndexGamesListingsViewModel model)
+        public ActionResult Search(string query)
         {
-            model.Games = this.games.Find(model.SearchText);
+            var data = this.games.Find(query);
 
-            return View(model);
+            return this.PartialView("_GamesListingPartial", data);
         }
     }
 }

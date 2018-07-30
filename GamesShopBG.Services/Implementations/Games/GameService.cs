@@ -18,16 +18,23 @@
             this.data = data;
         }
 
-        public IQueryable<GameListingServiceModel> Find(string searchText)
+        public IQueryable<GameListingServiceModel> Find(string query)
         {
-            searchText = searchText ?? string.Empty;
+            if (string.IsNullOrEmpty(query))
+            {
+                return this.data
+                             .Games
+                             .All()
+                             .OrderByDescending(g => g.Id)
+                             .ProjectTo<GameListingServiceModel>();
+            }
 
             return this.data
                              .Games
                              .All()
                              .OrderByDescending(g => g.Id)
-                             .Where(g => g.Title.ToLower().Contains(searchText.ToLower()))
-                             .ProjectTo<GameListingServiceModel>();
+                             .Where(g => g.Title.ToLower().Contains(query.ToLower()))
+                             .ProjectTo<GameListingServiceModel>(); ;
         }
 
         public async Task<GamesDetailsServiceModel> FindByIdAsync(int id)

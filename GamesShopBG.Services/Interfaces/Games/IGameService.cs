@@ -9,7 +9,7 @@
     {
         IQueryable<GameListingServiceModel> GetAllGames(int page = 1);
 
-        IQueryable<GameListingServiceModel> Find(string searchText);
+        IQueryable<GameListingServiceModel> Find(string query);
         
         Task<GamesDetailsServiceModel> FindByIdAsync(int id);
 

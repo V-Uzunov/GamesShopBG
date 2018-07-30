@@ -1,16 +1,12 @@
-﻿namespace GamesShopBG.Web.ViewModels.Home
+﻿namespace GamesShopBG.Services.Models.Games
 {
     using GamesShopBG.Common;
-    using GamesShopBG.Services.Models.Games;
-    using GamesShopBG.Web.Infrastructure.WebConstants;
     using System;
     using System.Collections.Generic;
 
     public class HomeIndexGamesListingsViewModel
     {
         public IEnumerable<GameListingServiceModel> Games { get; set; }
-
-        public string SearchText { get; set; }
 
         public int TotalGames { get; set; }
 

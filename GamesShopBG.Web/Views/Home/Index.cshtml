@@ -1,39 +1,59 @@
 ﻿@model  HomeIndexGamesListingsViewModel
+
 @{
     ViewBag.Title = GlobalResources.ViewHomeIndexTitle;
 }
-    @Html.Partial("_CarouselView")
 
-    <div class="row">
-        @using (Html.BeginForm("Search", "Home"))
-        {
-            <div class="col-md-1 pull-right">
-                <button type="submit" id="btn-edit" class="btn btn-sm pull-right"><span class="glyphicon glyphicon-search"></span> @GlobalResources.ViewHomeIndexSearch</button>
-            </div>
-            <div class="col-md-4 pull-right">
-                <input required type="search" name="SearchText" class="form-control" placeholder="Search ..." />
-            </div>
+@Html.Partial("_CarouselView")
 
-        }
-    </div>
-    <br />
 
-    <div class="row">
-        @Html.Partial("_GamesListingPartial", Model.Games)
-    </div>
-
-    <div class="row">
-        @if (Model.TotalGames > Model.Games.Count())
-        {
-
-            <ul class="pagination">
-                <li class="page-item" style="@(Model.CurrentPage == 1 ? "display:none" : string.Empty)">@Html.ActionLink(GlobalResources.ViewHomeIndexPrevious, "", new { page = Model.PreviousPage }, new { @class = "page-link btn" })</li>
-                @for (int i = 1; i <= Model.TotalPages; i++)
+<div class="row">
+    @using (Ajax.BeginForm("Search", null,
+                new AjaxOptions
                 {
-                    <li class="page-item @(Model.CurrentPage == i ? "active" : string.Empty) ">@Html.ActionLink($"{i}", "", new { page = i }, new { @class = "page-link btn" })</li>
+                    UpdateTargetId = "results",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST"
+                }, new { id = "searchForm" }))
+    {
+        <div class="col-md-4 pull-right">
+            <input type="search" name="query" id="inputId" class="form-control" placeholder="Search ..." />
+        </div>
+    }
+</div>
 
-                }
-                <li class="page-item" style="@(Model.CurrentPage == Model.TotalPages ? "display:none" : string.Empty)">@Html.ActionLink(GlobalResources.ViewHomeIndexNext, "", new { page = Model.NextPage }, new { @class = "page-link btn" })</li>
-            </ul>
+<br />
+
+<div class="row" id="results">
+    @Html.Partial("_GamesListingPartial", Model.Games)
+</div>
+
+<div class="row">
+    @if (Model.TotalGames > Model.Games.Count())
+    {
+
+        <ul class="pagination">
+            <li class="page-item" style="@(Model.CurrentPage == 1 ? "display:none" : string.Empty)">@Html.ActionLink(GlobalResources.ViewHomeIndexPrevious, "", new { page = Model.PreviousPage }, new { @class = "page-link btn" })</li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(Model.CurrentPage == i ? "active" : string.Empty) ">@Html.ActionLink($"{i}", "", new { page = i }, new { @class = "page-link btn" })</li>
+
+            }
+            <li class="page-item" style="@(Model.CurrentPage == Model.TotalPages ? "display:none" : string.Empty)">@Html.ActionLink(GlobalResources.ViewHomeIndexNext, "", new { page = Model.NextPage }, new { @class = "page-link btn" })</li>
+        </ul>
+    }
+</div>
+
+@section scripts{
+    <script>
+        var timeo;
+        $('#inputId').on('input', function () {
+            clearTimeout(timeo);
+            timeo = setTimeout(submitInput, 500);
+        });
+
+        function submitInput() {
+            $('#searchForm').submit();
         }
-    </div>
+    </script>
+}
