@@ -1,5 +1,5 @@
 # Games Shop BG
-Games Shop BG is a games store with Shopping cart, Reviews, Roles and CRUD operations.
+Games Shop BG is a games store with Shopping cart, Roles and CRUD operations.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/3qef924tdwargsvf?svg=true)](https://ci.appveyor.com/project/V-Uzunov/gamesshopbg)
 
@@ -15,12 +15,13 @@ The application is implemented using ASP.NET Framework. Using Visual Studio 2017
 •	Using sections and partial views, editor and display templates<br />
 •	Database back-end – Microsoft SQL Server<br />
 •	Database access – Entity Framework <br />
+•	Contains Data with Generic Repository Pattern and Unit Of Work Pattern <br />
 •	MVC Areas – area for administration and moderator<br />
 •	Managing users and roles – ASP.NET Identity System<br />
 •	Write unit tests for your logic, controllers, actions, helpers, etc.<br />
 •	Error handling and data validation<br />
 •	Handle correctly the special HTML characters and tags like and <script> (escape special characters).<br />
-•	Dependency Injection<br />
+•	Dependency Injection - DI Container (Ninject)<br />
 •	AutoMapping<br />
 •	Prevent from security vulnerabilities like SQL Injection, XSS, CSRF, parameter tampering, etc.<br />
 	
