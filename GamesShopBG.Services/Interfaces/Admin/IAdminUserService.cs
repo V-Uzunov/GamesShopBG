@@ -3,7 +3,6 @@
     using GamesShopBG.Services.Models.Admin;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Collections.Generic;
-    using System.Linq;
 
     public interface IAdminUserService
     {
@@ -14,5 +13,7 @@
         IdentityRole GetRoles(string role);
 
         IEnumerable<IdentityRole> GetAllRoles();
+
+        IEnumerable<AdminOrdersWithUserInfo> AllUsersWithOrders();
     }
 }

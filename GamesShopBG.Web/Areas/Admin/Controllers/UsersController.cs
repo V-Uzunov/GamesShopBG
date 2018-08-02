@@ -2,6 +2,7 @@
 {
     using GamesShopBG.Auth;
     using GamesShopBG.Services.Interfaces.Admin;
+    using GamesShopBG.Services.Models.Admin;
     using GamesShopBG.Web.Areas.Admin.Models;
     using GamesShopBG.Web.Infrastructure.Extensions;
     using System.Linq;
@@ -22,6 +23,7 @@
 
 
         //GET: /Admin/Users/
+        [HttpGet]
         public ActionResult Index()
         {
             var users = this.users.All();
@@ -66,6 +68,7 @@
             return RedirectToAction(nameof(Index));
         }
         //GET: /Admin/Users/DeleteUser/{id}
+        [HttpGet]
         [Route("/{userId}")]
         public ActionResult DeleteUser(string userId)
         {
@@ -102,6 +105,15 @@
             TempData.AddSuccessMessage($"User {findUser.UserName} successfully deleted ");
 
             return RedirectToAction(nameof(Index));
+        }
+
+        //GET: /Admin/Users/AllOrders
+        [HttpGet]
+        public ActionResult AllOrders()
+        {
+            var users = this.users.AllUsersWithOrders();
+
+            return this.View(users);
         }
     }
 }

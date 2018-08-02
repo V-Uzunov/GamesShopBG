@@ -19,12 +19,21 @@
                 @Html.ActionLink("Games Store BG", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fa fa-gamepad fa-2em" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" id="editNav">
+                <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(GlobalResources.ViewLayoutHome, "Index", "Home", new { area = "" }, "")</li>
                     <li>@{Html.RenderAction("CartSummary", "ShoppingCart", new { area = "" });}</li>
                     @if (User.IsInRole(GlobalConstants.AdminRole))
                     {
-                        <li>@Html.ActionLink(GlobalResources.ViewLayoutAdmin, "Index", new { controller = "Users", area = "Admin" })</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Admin
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("User-Administration", "Index", new { controller = "Users", area = "Admin" })</li>
+                            <li>@Html.ActionLink("Orders", "AllOrders", new { controller = "Users", area = "Admin" })</li>
+                        </ul>
+                    </li>
                     }
                     @if (User.IsInRole(GlobalConstants.ModeratorRole))
                     {

@@ -121,11 +121,13 @@
     <Compile Include="Interfaces\Moderator\IModeratorGamesService.cs" />
     <Compile Include="Interfaces\ShoppingCart\IShoppingCartService.cs" />
     <Compile Include="Models\Admin\AdminUserListingServiceModel.cs" />
+    <Compile Include="Models\Admin\AdminOrdersWithUserInfo.cs" />
     <Compile Include="Models\Games\GameListingServiceModel.cs" />
     <Compile Include="Models\Games\GamesCartServiceModel.cs" />
     <Compile Include="Models\Games\GamesDetailsServiceModel.cs" />
     <Compile Include="Models\Games\HomeIndexGamesListingsViewModel.cs" />
     <Compile Include="Models\Moderator\ModeratorGameServiceModel.cs" />
+    <Compile Include="Models\Order\OrderDetailsServiceModel.cs" />
     <Compile Include="Models\Order\OrderServiceModelForShoppingCart.cs" />
     <Compile Include="Models\ShoppingCart\ShoppingCartItemServiceModel.cs" />
     <Compile Include="Models\ShoppingCart\ShoppingCartRemoveServiceModel.cs" />

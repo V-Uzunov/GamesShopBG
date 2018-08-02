@@ -15,12 +15,17 @@ namespace GamesShopBG.Web.App_Start
             Mapper.Initialize(action =>
             {
                 action.CreateMap<AdminUserListingServiceModel, User>();
+
                 action.CreateMap<ModeratorGameServiceModel, Game>();
                 action.CreateMap<GameListingServiceModel, Game>();
                 action.CreateMap<GamesDetailsServiceModel, Game>();
                 action.CreateMap<GamesCartServiceModel, Game>();
+
                 action.CreateMap<ShoppingCartItemServiceModel, ShoppingCartItem>();
+
                 action.CreateMap<OrderServiceModelForShoppingCart, Order>();
+                action.CreateMap<OrderDetailsServiceModel, OrderDetail>();
+                action.CreateMap<AdminOrdersWithUserInfo, Order>();
             });
         }
     }

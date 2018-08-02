@@ -21,7 +21,13 @@
                .Users
                .All()
                .ProjectTo<AdminUserListingServiceModel>();
-        
+
+        public IEnumerable<AdminOrdersWithUserInfo> AllUsersWithOrders()
+            => this.data
+               .Orders
+               .All()
+               .ProjectTo<AdminOrdersWithUserInfo>();
+
         public void Delete(string userId)
         {
             var findUser = this.data.Users.Find(userId);

@@ -50,6 +50,6 @@ namespace GamesShopBG.Data.Models
         
         public DateTime OrderDate { get; set; }
         
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new HashSet<OrderDetail>();
     }
 }

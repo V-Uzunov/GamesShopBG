@@ -52,6 +52,6 @@
         [DataType(DataType.Date)]
         public DateTime? ModifiedOn { get; set; }
 
-        public virtual ICollection<Order> Order { get; set; } = new List<Order>();
+        public virtual ICollection<Order> Order { get; set; } = new HashSet<Order>();
     }
 }
