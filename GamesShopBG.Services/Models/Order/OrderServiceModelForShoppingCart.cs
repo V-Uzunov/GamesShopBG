@@ -9,12 +9,12 @@
         public int Id { get; set; }
         
         [Required(ErrorMessage = "Please enter your first name")]
-        [Display(Name = "First name")]
+        [Display(Name = "First Name")]
         [StringLength(DataConstants.OrderFirstNameMaxLenght)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Please enter your last name")]
-        [Display(Name = "Last name")]
+        [Display(Name = "Last Name")]
         [StringLength(DataConstants.OrderLastNameMaxLenght)]
         public string LastName { get; set; }
 
