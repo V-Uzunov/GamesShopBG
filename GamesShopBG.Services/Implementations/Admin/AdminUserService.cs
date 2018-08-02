@@ -6,6 +6,7 @@
     using GamesShopBG.Services.Models.Admin;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class AdminUserService :  IAdminUserService
     {
@@ -26,6 +27,7 @@
             => this.data
                .Orders
                .All()
+               .OrderBy(x=> x.OrderDate)
                .ProjectTo<AdminOrdersWithUserInfo>();
 
         public void Delete(string userId)

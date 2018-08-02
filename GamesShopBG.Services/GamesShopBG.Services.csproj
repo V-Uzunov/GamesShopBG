@@ -127,7 +127,7 @@
     <Compile Include="Models\Games\GamesDetailsServiceModel.cs" />
     <Compile Include="Models\Games\HomeIndexGamesListingsViewModel.cs" />
     <Compile Include="Models\Moderator\ModeratorGameServiceModel.cs" />
-    <Compile Include="Models\Order\OrderDetailsServiceModel.cs" />
+    <Compile Include="Models\Admin\AdminOrderDetailsServiceModel.cs" />
     <Compile Include="Models\Order\OrderServiceModelForShoppingCart.cs" />
     <Compile Include="Models\ShoppingCart\ShoppingCartItemServiceModel.cs" />
     <Compile Include="Models\ShoppingCart\ShoppingCartRemoveServiceModel.cs" />

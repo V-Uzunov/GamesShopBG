@@ -24,7 +24,7 @@ namespace GamesShopBG.Web.App_Start
                 action.CreateMap<ShoppingCartItemServiceModel, ShoppingCartItem>();
 
                 action.CreateMap<OrderServiceModelForShoppingCart, Order>();
-                action.CreateMap<OrderDetailsServiceModel, OrderDetail>();
+                action.CreateMap<AdminOrderDetailsServiceModel, OrderDetail>();
                 action.CreateMap<AdminOrdersWithUserInfo, Order>();
             });
         }

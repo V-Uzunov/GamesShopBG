@@ -1,16 +1,15 @@
 ﻿namespace GamesShopBG.Services.Models.Admin
 {
-    using GamesShopBG.Services.Models.Order;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class AdminOrdersWithUserInfo
     {
-        [Display(Name = "First name")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
         
-        [Display(Name = "Last name")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
         
         [Display(Name = "Address Line")]
@@ -26,10 +25,12 @@
         
         public string Email { get; set; }
 
+        [Display(Name = "Total Price")]
         public decimal OrderTotal { get; set; }
 
+        [Display(Name = "Order Date")]
         public DateTime OrderDate { get; set; }
 
-        public IEnumerable<OrderDetailsServiceModel> OrderDetails { get; set; }
+        public IEnumerable<AdminOrderDetailsServiceModel> OrderDetails { get; set; }
     }
 }
