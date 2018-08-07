@@ -7,6 +7,7 @@ Games Shop BG is a games store with Shopping cart, Roles and CRUD operations.
 ![Home-2](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Home-2.PNG)
 ![Game-Details](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Game-Details.PNG)
 ![Admin-Panel](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/Admin-Panel.PNG)
+![Admin-Order](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/AdminOrder.PNG)
 ![Shopping-Cart](https://github.com/V-Uzunov/GamesShopBG/blob/master/Screenshots/ShoppingCart.PNG)
 
  # General Requirements
