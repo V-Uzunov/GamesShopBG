@@ -22,7 +22,7 @@
 
         public virtual void Add(T entity)
         {
-            ChangeState(entity, EntityState.Added);
+            this.ChangeState(entity, EntityState.Added);
         }
 
         public virtual T Find(object id)
@@ -32,18 +32,7 @@
 
         public virtual void Update(T entity)
         {
-            ChangeState(entity, EntityState.Modified);
-        }
-
-        public virtual void Delete(T entity)
-        {
-            ChangeState(entity, EntityState.Deleted);
-        }
-
-        public virtual void Delete(object id)
-        {
-            T entity = this.Find(id);
-            this.Delete(entity);
+            this.ChangeState(entity, EntityState.Modified);
         }
 
         public int SaveChanges()
@@ -51,7 +40,7 @@
             return this.context.SaveChanges();
         }
 
-        private void ChangeState(T entity, EntityState state)
+        internal virtual  void ChangeState(T entity, EntityState state)
         {
             var entry = this.context.Entry(entity);
             if (entry.State == EntityState.Detached)

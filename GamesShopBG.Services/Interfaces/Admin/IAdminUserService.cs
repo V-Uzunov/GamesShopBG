@@ -3,6 +3,7 @@
     using GamesShopBG.Services.Models.Admin;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Collections.Generic;
+    using System.Linq;
 
     public interface IAdminUserService
     {
@@ -12,8 +13,14 @@
 
         IdentityRole GetRoles(string role);
 
-        IEnumerable<IdentityRole> GetAllRoles();
+        IQueryable<IdentityRole> GetAllRoles();
 
-        IEnumerable<AdminOrdersWithUserInfo> AllUsersWithOrders();
+        IQueryable<AdminOrdersWithUserInfo> AllUsersWithOrders();
+
+        AdminOrdersWithUserInfo FindOrderById(int id);
+
+        void FinishOrder(int id);
+
+        IQueryable<AdminOrdersWithUserInfo> ShowOrderPartialBy(string showedBy);
     }
 }

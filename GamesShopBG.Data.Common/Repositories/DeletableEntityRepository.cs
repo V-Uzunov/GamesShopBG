@@ -23,7 +23,7 @@
             return base.All();
         }
 
-        public override void Delete(T entity)
+        public void Delete(T entity)
         {
             entity.IsDeleted = true;
             entity.DeletedOn = DateTime.Now;
@@ -31,7 +31,7 @@
             base.Update(entity);
         }
 
-        public override void Delete(object id)
+        public void Delete(object id)
         {
             T entity = base.Find(id);
             entity.IsDeleted = true;
@@ -42,13 +42,13 @@
 
         public void HardDelete(T entity)
         {
-            base.Delete(entity);
+            base.ChangeState(entity, EntityState.Deleted);
         }
 
         public void HardDelete(object id)
         {
             T entity = this.Find(id);
-            base.Delete(entity);
+            this.HardDelete(entity);
         }
     }
 }

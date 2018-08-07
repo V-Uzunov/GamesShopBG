@@ -1,0 +1,98 @@
+﻿@model IQueryable<AdminOrdersWithUserInfo>
+
+<table class="table table-hover table-bordered table-striped">
+    <tr>
+        <th>
+            Order N:
+        </th>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Address Line
+        </th>
+        <th>
+            Zip Code
+        </th>
+        <th>
+            City
+        </th>
+        <th>
+            Phone Number
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Order Total
+        </th>
+        <th>
+            Order Date
+        </th>
+        <th>
+            Games Title with Amount
+        </th>
+        <th>
+            STATUS
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @item.OrderTotal.ToString("c")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @foreach (var gameItems in item.OrderDetails)
+                {
+                    @($"{gameItems.Amount}x{gameItems.GameTitle}")
+                    <br />
+                }
+            </td>
+            <td>
+                @if (item.IsDeleted != true)
+                {
+                    <h3 style="color: red">In Progress...</h3>
+                    @Html.ActionLink("Finish", "FinishOrder", "Users", new { area = "Admin", id = item.Id }, new { @class = "btn btn-md" })
+                }
+                else
+                {
+                    <h3 style="color: green">FINISHED</h3>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+

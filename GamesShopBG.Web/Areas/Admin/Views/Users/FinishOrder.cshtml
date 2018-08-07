@@ -1,0 +1,60 @@
+﻿@model AdminOrderFinishServiceModel
+
+@{
+    ViewBag.Title = "Finish Order";
+}
+
+<h2>Finish Order</h2>
+
+<div class="row form-default">
+    <h2 class="text-default">@ViewData["Title"]</h2>
+    <div class="col-md-4">
+        @using (Html.BeginForm("Finish", "Users", new { area = "Admin", id = Model.Id }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AddressLine, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.AddressLine, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ZipCode, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.City, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.OrderTotal, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.OrderTotal, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.OrderDate, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.OrderDate, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="btn-delete" class="btn btn-danger" value="Finish Order" />
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

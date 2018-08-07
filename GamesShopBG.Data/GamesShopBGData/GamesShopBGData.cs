@@ -43,11 +43,11 @@
             }
         }
 
-        public IRepository<Order> Orders
+        public IDeletableEntityRepository<Order> Orders
         {
             get
             {
-                return this.GetRepository<Order>();
+                return this.GetDeletableEntityRepository<Order>();
             }
         }
 

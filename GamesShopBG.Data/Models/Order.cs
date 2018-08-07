@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace GamesShopBG.Data.Models
+﻿namespace GamesShopBG.Data.Models
 {
-    public class Order
+    using GamesShopBG.Data.Common.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    public class Order : IDeletableEntity
     {
         [Key]
         public int Id { get; set; }
@@ -49,7 +51,12 @@ namespace GamesShopBG.Data.Models
         public decimal OrderTotal { get; set; }
         
         public DateTime OrderDate { get; set; }
-        
+
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
+
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new HashSet<OrderDetail>();
     }
 }

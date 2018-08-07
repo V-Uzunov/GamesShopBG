@@ -21,7 +21,7 @@
             get;
         }
 
-        IRepository<Order> Orders
+        IDeletableEntityRepository<Order> Orders
         {
             get;
         }

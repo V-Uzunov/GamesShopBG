@@ -12,10 +12,6 @@
 
         void Update(T entity);
 
-        void Delete(T entity);
-
-        void Delete(object id);
-
         int SaveChanges();
     }
 }

@@ -23,10 +23,10 @@
                .All()
                .ProjectTo<AdminUserListingServiceModel>();
 
-        public IEnumerable<AdminOrdersWithUserInfo> AllUsersWithOrders()
+        public IQueryable<AdminOrdersWithUserInfo> AllUsersWithOrders()
             => this.data
                .Orders
-               .All()
+               .AllWithDeleted()
                .OrderBy(x=> x.OrderDate)
                .ProjectTo<AdminOrdersWithUserInfo>();
 
@@ -44,7 +44,28 @@
             this.data.Users.SaveChanges();
         }
 
-        public IEnumerable<IdentityRole> GetAllRoles()
+        public AdminOrdersWithUserInfo FindOrderById(int id)
+            => this.data
+                .Orders
+                .All()
+                .Where(x=> x.Id == id)
+                .ProjectTo<AdminOrdersWithUserInfo>()
+                .FirstOrDefault();
+
+        public void FinishOrder(int id)
+        {
+            var orderById = this.data.Orders.Find(id);
+
+            if (orderById == null)
+            {
+                return;
+            }
+
+            this.data.Orders.Delete(orderById);
+            this.data.Orders.SaveChanges();
+        }
+
+        public IQueryable<IdentityRole> GetAllRoles()
             => this.data
                 .Roles
                 .All();
@@ -53,5 +74,28 @@
             => this.data
                 .Roles
                 .Find(role);
+
+        public IQueryable<AdminOrdersWithUserInfo> ShowOrderPartialBy(string showedBy)
+        {
+            if (showedBy == "progress")
+            {
+                return this.data
+                        .Orders
+                        .All()
+                        .ProjectTo<AdminOrdersWithUserInfo>();
+            }
+            else if (showedBy == "finished")
+            {
+                return this.data
+                    .Orders
+                    .AllWithDeleted()
+                    .Where(x => x.IsDeleted)
+                    .ProjectTo<AdminOrdersWithUserInfo>();
+            }
+            return this.data
+                    .Orders
+                    .AllWithDeleted()
+                    .ProjectTo<AdminOrdersWithUserInfo>();
+        }
     }
 }

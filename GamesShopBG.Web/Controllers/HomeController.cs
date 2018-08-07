@@ -24,7 +24,7 @@
             });
 
         //GET: /Home/Search/
-        public ActionResult Search(string query)
+        public PartialViewResult Search(string query)
         {
             var data = this.games.Find(query);
 

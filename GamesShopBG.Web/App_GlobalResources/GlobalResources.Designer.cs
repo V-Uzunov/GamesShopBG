@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to has been removed from your shopping cart..
+        ///   Looks up a localized string similar to  has been removed from your shopping cart..
         /// </summary>
         internal static string ControllerShoppingCartRemoveMessage {
             get {

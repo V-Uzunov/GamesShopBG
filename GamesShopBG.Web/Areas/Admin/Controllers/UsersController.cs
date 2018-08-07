@@ -115,5 +115,45 @@
 
             return this.View(users);
         }
+        
+        public ActionResult InProgressOrFinishedOrders(string showedBy)
+        {
+            var data = this.users.ShowOrderPartialBy(showedBy);
+
+            return this.PartialView("_OrdersPartialView", data);
+        }
+
+        //GET: /Admin/Users/FinishOrder
+        [HttpGet]
+        public ActionResult FinishOrder(int id)
+        {
+            var orderById = this.users.FindOrderById(id);
+
+            if (orderById == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            return this.View(orderById);
+        }
+
+        //POST: /Admin/Users/FinishOrder
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Finish(int id)
+        {
+            var orderById = this.users.FindOrderById(id);
+
+            if (orderById == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            this.users.FinishOrder(orderById.Id);
+
+            TempData.AddSuccessMessage($"Order is FINISHED!");
+
+            return RedirectToAction(nameof(AllOrders));
+        }
     }
 }
