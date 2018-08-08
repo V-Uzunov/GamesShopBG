@@ -40,7 +40,7 @@
             return this.context.SaveChanges();
         }
 
-        internal virtual  void ChangeState(T entity, EntityState state)
+        protected virtual  void ChangeState(T entity, EntityState state)
         {
             var entry = this.context.Entry(entity);
             if (entry.State == EntityState.Detached)
